@@ -1,4 +1,4 @@
-const solution = (progresses, speeds) => {
+const solution1 = (progresses, speeds) => {
   let num,
       temp,
       count = 1,
@@ -25,6 +25,29 @@ const solution = (progresses, speeds) => {
     }
   }
   result.push(count);
+
+  return result;
+}
+
+const solution = (progresses, speeds) => {
+  let result = [0];
+
+  /**
+   * 직관적으로 계산할 수 있게 변환.
+   */
+  const days = progresses.map((progress, i) => Math.ceil((100-progress) / speeds[i]));
+  let temp = days[0];
+
+  /**
+   * 다음 인덱스의 숫자보다 클 경우 카운트 증가, 작을 경우 배포 완료 및 카운트 초기화
+   */
+  for (let i=0, j=0; i<days.length; i++) {
+    if (temp >= days[i]) result[j]++;
+    else {
+      temp = days[i];
+      result[++j] = 1;
+    }
+  }
 
   return result;
 }
