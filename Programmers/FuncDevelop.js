@@ -29,7 +29,7 @@ const solution1 = (progresses, speeds) => {
   return result;
 }
 
-const solution = (progresses, speeds) => {
+const solution2 = (progresses, speeds) => {
   let result = [0];
 
   /**
@@ -47,6 +47,33 @@ const solution = (progresses, speeds) => {
       temp = days[i];
       result[++j] = 1;
     }
+  }
+
+  return result;
+}
+
+const solution = (progresses, speeds) => {
+  let result = [];
+
+  while (progresses.length > 0) {
+    /**
+     * 개발
+     */
+    for (let i in speeds) {
+      if (progresses[i] < 100) progresses[i] += speeds[i];
+    }
+
+    /**
+     * 개발 진행이 완료된 것 배포
+     */
+    let count = 0;
+    while (progresses[0] >= 100) {
+      progresses.shift();
+      speeds.shift();
+      count++;
+    }
+
+    if (count > 0) result.push(count);
   }
 
   return result;
