@@ -52,7 +52,7 @@ const solution2 = (progresses, speeds) => {
   return result;
 }
 
-const solution = (progresses, speeds) => {
+const solution3 = (progresses, speeds) => {
   let result = [];
 
   while (progresses.length > 0) {
@@ -77,6 +77,28 @@ const solution = (progresses, speeds) => {
   }
 
   return result;
+}
+
+const solution = (progresses, speeds) => {
+  /**
+   * 직관적으로 계산할 수 있게 변환.
+   */
+  const days = progresses.map((progress, i) => Math.ceil((100-progress) / speeds[i]));
+
+  /**
+   * 다음 인덱스의 숫자보다 클 경우 카운트 증가, 작을 경우 해당 개발 배포 완료
+   */
+  const result = days.reduce((acc, cur, i) => {
+    let temp = acc[acc.length - 1];
+    if (i > 0 && cur <= temp[0]) temp.push(cur);
+    else acc.push([cur]);
+    return acc;
+  }, []);
+
+  /**
+   * 길이를 통해 배포 갯수 확인
+   */
+  return result.map(x => x.length);
 }
 
 let progresses = [93, 30, 55],
