@@ -3,7 +3,7 @@ const solution = (priorities, location) => {
       count = 0,
       max = Math.max(...priorities);
 
-  if (J == max) return ++count;
+  if (J == max && location == 0) return ++count;
 
   while (1) {
     location--;
@@ -24,7 +24,7 @@ let priorities = [2, 1, 3, 2],
 
 console.log('***Ans.', solution(priorities, location), '\n\n'); // Ans: 1
 
-priorities = [1, 1, 9, 1, 1, 1];
-location = 2;
+priorities = [9, 9, 9, 9, 9, 1];
+location = 5;
 
 console.log('***Ans.', solution(priorities, location)); // Ans: 5
