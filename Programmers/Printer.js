@@ -1,7 +1,10 @@
 const solution = (priorities, location) => {
   let J = priorities.shift(),
-      count = 0,
-      max = Math.max(...priorities);
+      count = 0;
+
+  if (priorities == false) return 1;
+
+  let max = Math.max(...priorities);
 
   if (J == max && location == 0) return ++count;
 
@@ -13,14 +16,14 @@ const solution = (priorities, location) => {
       max = Math.max(...priorities);
     } else {
       priorities.push(J);
-      if (location == -1) location += priorities.length;
+      if (location == -1) location = priorities.length - 1;
     }
     J = priorities.shift();
   }
 }
 
-let priorities = [2, 1, 3, 2],
-    location = 3;
+let priorities = [0],
+    location = 0;
 
 console.log('***Ans.', solution(priorities, location), '\n\n'); // Ans: 1
 
