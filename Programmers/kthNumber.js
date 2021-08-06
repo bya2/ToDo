@@ -2,8 +2,8 @@ const solution = (array, commands) => {
   const answer = [];
 
   for (const c of commands) {
-    const arrSliced = array.slice(c[0]-1, c[1]);
-    answer.push(arrSliced.sort()[c[2]-1 || arrSliced.length - 1])
+    const arrSorted = array.slice(c[0]-1, c[1]).sort((a, b) => a - b);
+    answer.push(arrSorted[c[2] - 1]);
   }
 
   return answer;
