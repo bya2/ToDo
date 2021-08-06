@@ -1,5 +1,3 @@
-const ok = [];
+const ok = [1,2,3];
 
-let truck = ok.shift();
-
-console.log(truck);
+console.log(ok[-2]);
