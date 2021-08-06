@@ -32,3 +32,24 @@ JS Array Methods
 첫 번째 인자값은 currentValue   
 두 번재 인자값은 index,  
 세 번째 인자값은 array
+
+> 문자열 만드는 법
+```
+[Convert string]
+
+1. arr.map(x => x + '')
+2. `${a}${b}`
+3. (a + '' + b)*1
+```
+
+> 문자열화한 숫자 배열 정렬 방법
+```
+[ASC]
+
+arr.sort((a, b) => (a + b) - (b + a));
+```
+```
+[DESC]
+
+arr.sort((a, b) => (b + a) - (a + b));
+```
