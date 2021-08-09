@@ -56,7 +56,14 @@ arr.sort((a, b) => (b + a) - (a + b));
 
 ### 0809
 
->서로 길이가 다른 배열의 각 요소를 사이클로 돌면서 비교하는 방법
+> 'for in' 문법에서 인덱스는 문자열.
+```js
+for (const i in arr) {
+  ... // i: string
+}
+```
+
+> 서로 길이가 다른 배열의 각 요소를 사이클로 돌면서 비교하는 방법
 
 ```js
 // There are arr1 and arr2.
@@ -65,4 +72,16 @@ arr.sort((a, b) => (b + a) - (a + b));
 
 arr1.filter((x, i) => x === arr2[i % arr2.length])
 arr1.filter((x, i) => x === arr2[i % arr2.length]).length
+```
+
+> 소수 확인
+```js
+const isPrime = num => {
+  if (num < 2 ) return false;
+  if (num === 2) return true;
+  for (let i=2; i<=Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
+  }
+  return true;
+}
 ```

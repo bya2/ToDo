@@ -1,3 +1,4 @@
 let arr = [1, 2, 3];
 
-console.log([...arr]);
+arr.splice(0, 1)
+console.log(arr);
