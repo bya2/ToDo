@@ -6,13 +6,7 @@ const solution = answers => {
 
   const arr = [];
   for (const abdicant of abdicants) {
-    const ok = answers.filter((x, i) => {
-      console.log(`x=${x}, ?=${abdicant[i % abdicant.length]}, i=${i}, len=${abdicant.length}, n=${i % abdicant.length}`);
-      return x === abdicant[i % abdicant.length];
-    }).length;
-
-    arr.push(ok);
-    console.log('')
+    arr.push(answers.filter((x, i) => x === abdicant[i % abdicant.length]).length);
   }
   const max = Math.max(...arr);
 

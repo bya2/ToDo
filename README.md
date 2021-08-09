@@ -13,16 +13,16 @@
 ### 0806
 
 > 객체의 언박싱에 대해서 알고 있었지만, 배열의 언박싱에 대해선 모르고 있었음.
-```
-[Unboxing]
+```js
+// Unboxing
 
 const command = [5, 6, 3];
 const [a, b, c] = command; // a=5, b=6, c=3
 ```
 
 > 자바스크립트의 정렬
-```
-[Sort]
+```js
+// Sort
 
 arr.sort(); // string
 arr.sort((x, y) => x - y); // number
@@ -34,8 +34,8 @@ JS Array Methods
 세 번째 인자값은 array
 
 > 문자열 만드는 법
-```
-[Convert string]
+```js
+// Convert string
 
 1. arr.map(x => x + '')
 2. `${a}${b}`
@@ -43,13 +43,26 @@ JS Array Methods
 ```
 
 > 문자열화한 숫자 배열 정렬 방법
-```
-[ASC]
+```js
+// ASC
 
 arr.sort((a, b) => (a + b) - (b + a));
 ```
-```
-[DESC]
+```js
+// DESC
 
 arr.sort((a, b) => (b + a) - (a + b));
+```
+
+### 0809
+
+>서로 길이가 다른 배열의 각 요소를 사이클로 돌면서 비교하는 방법
+
+```js
+// There are arr1 and arr2.
+// Loop according to arr2.
+// Use 'a%b'.
+
+arr1.filter((x, i) => x === arr2[i % arr2.length])
+arr1.filter((x, i) => x === arr2[i % arr2.length]).length
 ```
