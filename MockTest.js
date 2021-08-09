@@ -1,4 +1,29 @@
 const solution = answers => {
+  const result = [],
+        abdicants = [[1, 2, 3, 4, 5],
+                     [2, 1, 2, 3, 2, 4, 2, 5],
+                     [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]];
+
+  const arr = [];
+  for (const abdicant of abdicants) {
+    const ok = answers.filter((x, i) => {
+      console.log(`x=${x}, ?=${abdicant[i % abdicant.length]}, i=${i}, len=${abdicant.length}, n=${i % abdicant.length}`);
+      return x === abdicant[i % abdicant.length];
+    }).length;
+
+    arr.push(ok);
+    console.log('')
+  }
+  const max = Math.max(...arr);
+
+  for (let i=0; i<arr.length; i++) {
+    if (arr[i] === max) result.push(i+1);
+  }
+
+  return result;
+}
+
+const solution1 = answers => {
   // 수포자들
   const abdicants = [[1, 2, 3, 4, 5],
                      [2, 1, 2, 3, 2, 4, 2, 5],
@@ -50,7 +75,6 @@ const solution = answers => {
 
   return result;
 }
-
 // 문제가 10000개이므로, 최소한의 동작을 위해서 수포자의 답지와 답안지가 서로 매치되도록 함
 // 수포자의 답지와 답안지가 같은 지 배열 비교(*어려움)
 
