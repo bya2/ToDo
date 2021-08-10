@@ -64,7 +64,7 @@ for (const i in arr) {
 ```
 
 > 서로 길이가 다른 배열의 각 요소를 사이클로 돌면서 비교하는 방법
-
+---
 ```js
 // There are arr1 and arr2.
 // Loop according to arr2.
@@ -73,7 +73,7 @@ for (const i in arr) {
 arr1.filter((x, i) => x === arr2[i % arr2.length])
 arr1.filter((x, i) => x === arr2[i % arr2.length]).length
 ```
-
+---
 > 소수 확인
 ```js
 const isPrime = num => {
@@ -85,3 +85,13 @@ const isPrime = num => {
   return true;
 }
 ```
+---
+> 자바스크립트의 값은 원시값과 참조값으로 나뉜다.  
+> 원시값: Number, String, Boolean, Null, Undefined  
+> 참조값: Object, Symbol  
+```js
+// There is arr1.
+arr2 = arr1; // 원시값이 아닌 배열이므로, 변수가 배열의 주소를 가리키는 값
+arr2 = [...arr1]; // 해결.
+```
+

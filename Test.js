@@ -1,4 +1,13 @@
-let arr = [1, 2, 3];
+const findDivisor = integer => {
+  const arr = [];
 
-arr.splice(0, 1)
-console.log(arr);
+  for (let i=1; i<=integer/2; i++) {
+    if(integer % i === 0) arr.push(i);
+  }
+
+  arr.push(integer);
+
+  return arr;
+}
+
+console.log(findDivisor(8));

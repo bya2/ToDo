@@ -11,6 +11,7 @@ const solution = numbers => {
     if (chars_len) {
       for (let i=0; i<chars_len; i++) {
         const temp = [...chars];
+        console.log(`temp: ${temp}, chars: ${chars}, ...chars: ${[...chars]}`);
         temp.splice(i, 1);
         const parseValue = parseInt(curr + chars[i]);
         if (isPrime(parseValue)) {
