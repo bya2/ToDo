@@ -1,13 +1,7 @@
-const findDivisor = integer => {
-  const arr = [];
+const arr = [];
 
-  for (let i=1; i<=integer/2; i++) {
-    if(integer % i === 0) arr.push(i);
-  }
-
-  arr.push(integer);
-
-  return arr;
+if (arr) {
+  console.log(true);
+} else {
+  console.log(false);
 }
-
-console.log(findDivisor(8));
