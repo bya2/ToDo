@@ -1,28 +1,20 @@
-// Level 1
-
 const solution = (n, lost, reserve) => {
+  const realLost = lost.filter(x => !reserve.includes(x));
+  const realReserve = reserve.filter(x => !lost.includes(x));
+
   let answer = n - lost.length;
 
-  let l, r, diff, i = 30;
+  for (const r of realReserve) {
+    const l = realLost[0];
+    if (!l) break;
 
-  while (i--) {
-    l = lost[0];
-    r = reserve[0];
-    if (!l || !r) return answer;
-
-    diff = l - r;
-
-    // r가 l보다 큰 데 diff가 2 이상이라면,
-    if (diff > 1) reserve.shift();
-    else if (diff < -1) lost.shift();
-    else {
-      if (diff === -1 || diff === 1) {
-        reserve.shift();
-        lost.shift();
-        answer += 1;
-      }
+    if (Math.abs(r - l) === 1) {
+      realLost.shift();
+      answer++;
     }
   }
+
+  return answer;
 }
 
 // lost의 요소 +-1을 reserve에서 찾는다.
