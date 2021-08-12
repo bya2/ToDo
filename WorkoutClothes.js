@@ -1,4 +1,59 @@
+const solution = (n, lost, reserve) => {
+  // 도난당한 학생 중 여벌의 체육복을 가지고 있어서 일단 체육복을 가지고 있는 학생들을 구분
+  // 여벌의 체육복을 가지고 있었으나 도난당한 학생을 구분
+  const noClothes = lost.filter(e => !reserve.includes(e)).sort((a, b) => a - b); // 체육복을 가지고 있지 않은 학생들
+  let isReserve = reserve.filter(e => !lost.includes(e)).sort((a, b) => a - b); // 체육복이 2개인 학생들
 
+  const answer = n - noClothes.filter(noC => {
+    const rIdx = isReserve.findIndex(e => Math.abs(e - noC) === 1);
+    if (rIdx === -1) return true;
+    isReserve.splice(rIdx, 1);
+  }).length;
+
+  return answer;
+}
+
+
+const solutionPrevious4 = (n, lost, reserve) => {
+  const noClothes = lost.filter(e => !reserve.includes(e));
+  let isReserve = reserve.filter(e => !lost.includes(e));
+
+  let answer = n - noClothes.length;
+
+  for (const noC of noClothes) {
+    const front = isReserve.indexOf(noC-1),
+          back = isReserve.indexOf(noC+1);
+    
+    if (front !== -1) {
+      isReserve.splice(front, 1);
+      answer++;
+    } else if (back !== -1) {
+      isReserve.splice(back, 1);
+      answer++;
+    }
+  }
+
+  return answer;
+}
+
+
+const solutionPrevious3 = (n, lost, reserve) => {
+  const noClothes = lost.filter(e => !reserve.includes(e));
+  let isReserve = reserve.filter(e => !lost.includes(e));
+
+  let answer = n - noClothes.length;
+
+  for (const noC of noClothes) {
+    const rIdx = isReserve.findIndex(e => Math.abs(e - noC) === 1);
+    console.log({noC, rIdx, isReserve});
+    if (rIdx !== -1) {
+      isReserve.splice(rIdx, 1);
+      answer++;
+    }
+  }
+
+  return answer;
+}
 
 
 const solutionPrevious2 = (n, lost, reserve) => {

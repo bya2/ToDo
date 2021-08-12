@@ -107,6 +107,7 @@ for (const x of arr) {
 
 > 배열에서 특정 요소 제거
 ```js
+arr.splice(idx, 1);
 arr.splice(idx, n);
 ```
 
