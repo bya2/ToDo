@@ -1,5 +1,19 @@
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const obj = {
+  a: 1,
+  b: 2,
+  c: 3
+}
 
-const a = arr.splice(2, 1);
+console.log(obj.constructor.values(obj));
 
-console.log({a, arr});
+function _fn_ok(obj) {
+  obj.d = 8;
+  // return obj;
+}
+
+// console.log(obj);
+console.log(_fn_ok(obj));
+console.log(obj);
+
+
+console.log({}.__proto__);

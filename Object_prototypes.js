@@ -37,5 +37,14 @@ const call_jh = _fn_jh.call(_obj_jh, 3);
 
 console.log(call_jh);
 
-console.log(Object.prototype);
-console.log(Object.__proto__);
+_fn_jh.prototype.kim = 'dkfjkd';
+_fn_jh.prototype.lee = '1202';
+
+const jh = new _fn_jh(13);
+
+console.log(_fn_jh.prototype);
+console.log(jh.prototype);
+console.log(jh.__proto__);
+
+console.log(jh);
+
