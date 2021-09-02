@@ -2,7 +2,7 @@
 
 ## 원리
 
-[**링크 ↓**](https://github.com/bya2/Coding/blob/main/IIEF.md)
+[**링크 ↓**](https://github.com/bya2/Coding/blob/main/mdFolder/IIEF.md)
 ```
 *즉시 실행 함수, import, export, commonJS, ES, TEST
 ```
