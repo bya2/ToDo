@@ -1,5 +1,17 @@
 # 코딩: 코딩 테스트 뿐만 아니라 여러가지 JS 기능들!
 
+## 0902
+
+[**링크 ↓**](https://github.com/bya2/Coding/blob/main/IIEF.md)
+```
+*즉시 실행 함수, import, export, commonJS, ES, TEST
+```
+
+[**링크 ↓**](https://github.com/bya2/Coding/blob/main/Closure.md)
+```
+*Closure, var, let, TEST
+```
+
 ### 0830
 
 **Hoisting, TDZ(Temporal Dead Zone)**
@@ -23,13 +35,27 @@ TDZ(Temporal Dead Zone)
 
 ```
 
-**Closure**
+**Closure, 문맥 높이의 차이**
 ```
 Closure
     Lexical Environment를 기억하는 함수
 
 Lexical Environment
     자신이 생성될 때의 환경
+```
+
+아래 문제는 단순히 비동기 문제로 3만 출력되는 줄 알고 있었다.
+
+i를 참조하는데, i가 전역으로 선언되어있기 때문에 전역 i가 마지막 값인 3이 되는 것이다.
+
+이를 'IIEF(즉시 실행 함수)'로 해결할 수 있다.
+
+```js
+for (var i=0; i<3; i+=1) {
+  setTimeout(() => {
+    console.log(i);
+  }, i * 1000);
+}
 ```
 
 

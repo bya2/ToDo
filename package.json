@@ -1,0 +1,24 @@
+{
+  "name": "Coding",
+  "version": "1.0.0",
+  "description": "**Hoisting, TDZ(Temporal Dead Zone)**\r ```\r JS Engine은 Script를 가져오면 가장 먼저 코드에서 데이터를 위한 메모리를 설정.",
+  "main": "BestAlbum.js",
+  "dependencies": {
+    "monaco-editor": "^0.27.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bya2/Coding.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bya2/Coding/issues"
+  },
+  "homepage": "https://github.com/bya2/Coding#readme"
+}
