@@ -1,0 +1,47 @@
+계기
+
+
+
+
+영상 합성과 음성 합성의 기술을 기반으로 제 역량을 키워나갈 수 있고
+
+
+
+파라미터가 있고 쿼리스트링이 있음.
+게시판 종류
+
+
+
+댓글: 인피니티 스크롤 (어플)
+
+
+신고: 모달인데 툴팁 팝업창?
+
+
+menu-popup-
+
+
+
+익스펜더
+
+
+리유저블
+arrow down
+sticky - 페이지 내에서 어떤 컨텐츠 고정
+
+expand - blockquote
+content
+
+border-left
+
+요소를 구성하는 객체로 나타낸것
+
+
+match-parent
+
+
+리덕스는 스테이트 관리 라이브러리
+reducx 	recoil
+
+
+Data fetch

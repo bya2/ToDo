@@ -1,6 +1,7 @@
 node_modules/
-*.txt
-react/
-next/
-scss/
-js/
+# *.txt
+# react/
+# next/
+# scss/
+# js/
+golang/react

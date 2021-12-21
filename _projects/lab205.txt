@@ -1,0 +1,25 @@
+Plan
+:: 메카솔루션 제품 구입 (O)
+:: 박혜리씨에게 쓸 라즈베리파이 제품군 조사 및 구입 요구 전달 (O)
+
+:: SSE(Server-sents event) 방식으로 Express 작성 (O)
+:: IIS docker 연동 (+쿠버네티스 or 스왐)
+:: 워크스테이션 포트포워딩
+
+1110
+:: 데이터 분석 및 이미지 인식에 적합한 싱글 보드 컴퓨터 조사.
+
+
+1109
+:: SQL 저장소 생성 및 코드 작성.
+:: 구입할 제품군 PPT 작성.
+:: Web app logging 변경
+ - pkg: pino, express-pino-logger
+
+
+1107
+:: 메카솔루션 제품 구입
+:: 라즈베리파이 제품군 조사 및 구입 요구 전달.
+:: SSE 작성
+:: Logging
+ - pkg: winston, winston-daily-rotate-file, app-root-path

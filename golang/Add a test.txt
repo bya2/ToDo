@@ -1,0 +1,17 @@
+1107
+
+
+golang: Add a test
+
+
+- 개발 중 코드를 테스트하면 변경할 때 버그가 나타날 수 있음.
+
+- Golang은 Unit testing에 대한 내장 지원 기능을 가지고 있음.
+  (이름 지정 규칙, 테스팅 패키지, 테스팅 커맨드를 사용)
+
+---*_test.go
+import testing, regexp
+
+func Test*(t *testing.T) {}
+---
+

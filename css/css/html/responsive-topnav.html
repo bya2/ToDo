@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .topnav {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: rgba(112, 112, 112, 1);
+    }
+
+    .topnav li {
+      float: left;
+    }
+
+    .topnav li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 1rem 2rem;
+      text-decoration: none;
+    }
+
+    .topnav li:not(.right) {
+      border-right: gray solid 0.1rem;
+    }
+
+    .topnav li a:hover:not(.active) {
+      background-color: rgba(0, 0, 0, 1);
+    }
+
+    .topnav .active {
+      background-color: rgba(103, 255, 124, 1);
+    }
+
+    .topnav .right {
+      background-color: rgba(250, 2, 2, 1);
+      float: right;
+    }
+
+    @media screen and (max-width: 600px) {
+      .topnav li.right,
+      .topnav li {
+        float: none;
+      }
+    }
+  </style>
+  <body>
+    <ul class="topnav">
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="right"><a href="#about">About</a></li>
+    </ul>
+  </body>
+</html>

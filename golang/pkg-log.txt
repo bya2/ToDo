@@ -1,0 +1,54 @@
+1107 지리산ost
+
+previous: os package, panic(), io.Writer, flags
+
+golang: package: log
+
+// print to the standard logger, Arguments are handled in the manner of fmt.Print.
+- func Print(v ...interface{})
+- func Printf(foramt string, v ...interface{})
+- func Println(v ...interface{})
+
+- func Fatal(v ...interface{}) // Print() - os.Exit(1)
+- func Fatalf(format string, v ...interface{})
+- func Fatalln(v ...interface{})
+
+- func Panic(v ...interface{}) // Print() - panic()
+- func Panicf(foramt string, v ...interface{})
+- func Panicln(v ...interface{})
+
+- func Flags() int // flags for the standard logger
+- func SetFlags(flags int) // default: 3, so on: below flags
+
+- func Output(calldepth int, s string) error // logging event
+- func SetOutput(w io.Writer)
+
+- func Prefix() string // prefix for the standard logger
+- func SetPrefix(prefix string)
+
+- type Logger struct
+: io.Writer에 대한 출력 라인을 생성하는 활성 로깅 객체.
+: 각 로깅 작업은 Writer's Write 메서드에 단일 호출 수행.
+: *Logger는 동시적으로 다중 고루틴에서 사용될 수 있음. (Writer에 대한 엑세스를 직렬화하는 것을 보장)
+
+- func Default() *Logger // Return standard logger
+- func New(out io.Writer, prefix string, flag int) *Logger // Create new Logger
+- func (*Logger) Fatal(v ...interface{}) // New로 생성한 Logger 인스턴스에서의 Fatal ex) logger.Fatal
+
+{?
+standard logger:
+logging event:
+}
+
+flags:
+{
+None	      = 0
+Ldate         = 1 << iota     // the date in the local time zone: 2009/01/23
+Ltime                         // the time in the local time zone: 01:23:23
+Lmicroseconds                 // microsecond resolution: 01:23:23.123123.  assumes Ltime.
+Llongfile                     // full file name and line number: /a/b/c/d.go:23
+Lshortfile                    // final file name element and line number: d.go:23. overrides Llongfile
+LUTC                          // if Ldate or Ltime is set, use UTC rather than the local time zone
+Lmsgprefix                    // move the "prefix" from the beginning of the line to before the message
+LstdFlags     = Ldate | Ltime // initial values for the standard logger
+}

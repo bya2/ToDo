@@ -1,0 +1,13 @@
+Port: 3306
+
+id: Root
+pw: Emskr0913@
+role: Root
+
+id: user_00
+pw: Dlfnflf0913@
+Role: DB Admin
+
+id: user_01
+pw: u0123
+Role: User Admin

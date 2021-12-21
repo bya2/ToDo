@@ -1,0 +1,32 @@
+1107~
+
+get your code to N: N에 코드를 입력하다.
+
+as you make changes: 변경할 때
+
+find their way in
+
+naming convention: 이름 지정 규칙
+
+
+# Effective Go
+
+borrow: 빌리다. 차용하다.
+
+unusual: 특이한
+unusual properties: 특이한 특성
+
+make effective O OC O를 OC로 만들다.
+different in character from -: -와 성격이 다르게
+written in: -로 작성된
+relative: 동류, 동족
+in its relatives: 동류로
+
+straightforward: 간단한, 쉬운, 복잡하지 않은, 솔직한
+be likely to
+be unlikely to: -할 것 같지 않은
+satisfactory: 만족스러운
+
+On the other hand: 반면에
+perspective: 관점
+

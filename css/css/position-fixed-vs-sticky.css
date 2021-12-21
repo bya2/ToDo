@@ -1,0 +1,13 @@
+/* 
+ * fixed:
+ * viewport에 고정되어 있어서 스크롤을 내려도 원하는 위치에 고정되어있음.
+ */
+
+/* 
+ * sticky:
+ * 내가 정한 offset에 닿으면 그 순간부터 fixed 처럼 화면 상에 고정.
+ * fixed와는 달리 scroll box에 고정. (즉 scroll box가 offset의 기준)
+ * top, right, botton, left 속성 필수.
+ *
+ * sticky 박스와 scroll 박스 사이에 overflow: hidden 속성을 적용한 박스가 끼어들면 sticky 박스는 일반적인 흐름을 따름.
+ */

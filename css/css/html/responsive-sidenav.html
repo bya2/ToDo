@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      /* margin과 padding을 0으로 설정하지 않으면 왜 띄어질까? */
+      /* https://www.w3schools.com/css/tryit.asp?filename=trycss_navbar_vertical_responsive */
+      ul.sidenav {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 25%;
+        height: 100%;
+        position: fixed;
+        background-color: rgb(216, 216, 216);
+      }
+
+      /* li a 블록들 내에서 컨텐츠들이 어떤 특성 적용  */
+      /* a는 링크이므로 텍스트 색과 밑줄 등의 효과를 변경하거나 제거 */
+      /* 블록 간의 경계선 적용 */
+      ul.sidenav li a {
+        display: block;
+        color: black;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border-bottom: gray solid 0.05rem;
+      }
+
+      .sidenav li a.active {
+        background-color: greenyellow;
+        color: white;
+      }
+
+      .sidenav li a.active:hover {
+        background-color: green;
+      }
+
+      ul.sidenav li a:hover:not(.active) {
+        background-color: #555;
+        color: white;
+      }
+
+      div.content {
+        margin-left: 25%;
+        padding: 0.1rem 2rem;
+      }
+
+      @media screen and (max-width: 900px) {
+        ul.sidenav {
+          width: 100%;
+          height: auto;
+          border-bottom: none;
+          border-right: #555 solid 0.1rem;
+          position: relative;
+        }
+
+        ul.sidenav li a {
+          float: left;
+          padding: 1rem;
+        }
+
+        div.content {
+          margin-left: 0;
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+        ul.sidenav li a {
+          text-align: center;
+          float: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="sidenav">
+      <li><a class="active" href="#home">Home</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li class="right"><a href="#about">About</a></li>
+    </ul>
+
+    <div class="content">
+      <h2>Responsive Sidenav Example</h2>
+      <p>
+        This example use media queries to transform the sidenav to a top
+        navigation bar when the screen size is 900px or less.
+      </p>
+      <p>
+        We have also added a media query for screens that are 400px or less,
+        which will vertically stack and center the navigation links.
+      </p>
+      <p>
+        You will learn more about media queries and responsive web design later
+        in our CSS Tutorial.
+      </p>
+      <h3>Resize the browser window to see the effect.</h3>
+    </div>
+  </body>
+</html>

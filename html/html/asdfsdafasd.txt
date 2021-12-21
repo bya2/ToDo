@@ -1,0 +1,7 @@
+이쁜 색 콤비같은 걸 원할 수 있음.
+
+이거 쓰면 좋아요.
+
+margin-box
+
+padding 바깥은 컨텐츠로 안보겟다 content box

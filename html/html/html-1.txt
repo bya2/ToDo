@@ -1,0 +1,267 @@
+# HTML
+
+## 질문:
+CSS에서 background의 색은 background를 이용? background-color 이용?
+
+##
+프론트엔드 직무를 선택하게 된 계기
+
+백엔드의 로직이 어떻게 동작하는 지 시험해보고 싶었습니다. 물론 팀 프로젝트에서 프론트엔드를 하고 있는 친구들에게 코드를 작성해달라고 부탁해도 되지만, 팀 프로젝트에서는 백엔드를 담당하는 사람이 저 말고 다른 분들도 있어서, 제 마음대로 코드를 작성할 수 없었습니다.
+
+그래서 한 번 '직접 풀 스택을 구현해보자'라고 생각을 했는데, 개인적으로 프론트엔드 단이 너무 재밌었습니다.
+
+
+## WWW(World Wide Web)
+
+www에는 html코드를 해석할 수 있는 해석기가 탑재. 그래서 웹페이지로 적절하게 변환됌.
+
+
+## HTML, CSS, JS
+
+HTML: 사람의 뼈대
+CSS : 사람의 피부
+JS  : 보이지 않는 근육, 신경
+
+
+## HTML(Hypertext Text Markup Language)
+
+!DOCTYPE: html의 버전
+Tag
+Element:Attribute
+Content
+
+Tag
+ - heading(h)
+ - paragraph(p): 한 라인
+ - link(a:href): 특정 페이지로 이동, 동일한 페이지 내 특정 콘텐츠 위치로 이동, JS 함수 호출
+ - Image(img:src,alt): alt는 이미지에 대한 부가적인 정보.
+
+ Text Formatting:
+ - bold(b)
+ - strong
+ - italic(i)
+ - (emper size)em: i 태그와 비슷하지만, 강조를 의미함.
+ - small
+ - mark: 하이라이트 처리
+ - del: 취소선
+ - ins: 밑줄
+ - sub: 아래 첨자
+ - sup: 윗 첨자
+ - iframe: html 내에 html 삽입
+ - table, thead, tbody, th, tr, td, tfoot
+ - ul, ol, li, dl, dt
+
+ 참조:
+ - abbr: 약어
+ - address: 물리적인 주소 정보 기재
+ - cite: 책이나, 소설이나, 노래나, 영화, 미술품, 조각 등과 같은 작품의 제목을 나타내는 용도
+
+ 인용:
+ - blockquote: 긴 글 인용
+ - q: 짧은 글 인용
+
+Element
+ - head: 웹 페이지를 정의
+ - meta: 
+	- charset: html을 encoding할 때 어떤 character set으로 인코딩을 할 것인가.
+	- http-equiv="X-UA-Compatible", content="IE-edge": 브라우저에 대해서 최신 표준 모드 지원 
+	- name="viewport", content="width=device-width, initial-scale=1.0": 모바일에서 최적화
+	- name="keyword" content="": 검색 엔진 최적화 (검색 엔진에서 키워드가 검색될 수 있도록함.) ,로 구분
+	- name="description" content="": 페이지 설명
+	- name="author" content="": 저작권자
+
+Attribute
+ - html 요소에 대한 추가적인 정보를 제공하기 위한 것.
+ - 다양한 표현
+
+ - img:alt: 시각 장애인들은 웹 사이트를 이용할 때 기계를 이용하는데, 페이지에 있는 내용들을 기계가 읽음.
+ - blockquote:cite: 출처를 정의
+ - abbr:title: 약어의 원래 명칭
+ - a:target="_self | _blank | _parent | _top": 현재 탭, 새 탭, iframe의 부모 html의 href이 바뀜, 최상위 html의 href이 바뀜.
+ - element:id: 고유번호(유일한 값이어야함) a:href="#id"로 접근 가능.
+
+## VSCode
+
+Extensions: Prettier(Setting - Set Default Formatter - Check Format On Save)
+Code snippet(File - Preference - User snippets)
+
+
+## DOM(Document Object Model)
+
+HTML은 Tree 모양 구조. = 'DOM'이라고 함.
+
+
+html은 element(요소)의 집합
+element마다 고유의 tag 명을 갖고 있음.
+
+이렇게 만들어진 모든 html은 DOM Tree(트리 모양, 계층 구조)를 갖고 있다.
+
+## Style
+ - Design
+
+## Text Formatting
+
+elements: bold, strong
+
+한 줄을 차지하는 요소를 블록 요소라고 함.
+한 줄 전체를 차지하는 것이 아닌, 그 다음 태그가 옆으로 붙게 하는 요소를 인라인 요소라고 함.
+
+NT 태그: 종료 태그가 없는 태그
+
+<b>와 style:font-weight:bold; 는 같아 보이지만 해석기가 읽을 때, 검색 엔진이 읽을 때 해석하는 방식이 달라진다.
+
+## 주석
+
+1. 설명
+2. 내가 작성한 코드의 실행을 잠시 막고 싶을 때 
+
+
+## Iframe
+
+html 안에 보이지 않는 또 다른 html을 넣음
+
+
+## A 태그 용도
+1. 페이지 이동
+2. 페이지 내 이동
+3. 특정 자바스크립트 함수 호출 a href="javascript:func_name();"
+
+## 테이블
+
+- table
+
+-- thead
+--- tr
+---- th: bold, center align
+
+-- tbody
+--- tr
+---- td:rowspan 행 간의 셀을 병합
+
+-- tfoot: 표 전체에 대한 집계
+--- tr
+---- td: colspan 열 간의 셀을 병합
+
+## 목록
+
+- ul: 순서x
+-- li
+
+- ol: 순서o
+-- li
+
+- dl: 설명을 위한 목록
+-- dt: definition에 대한 타이틀
+-- dd: definition에 대한 설명
+
+
+## 블록 레벨 요소, 인라인 요소
+
+Block-Level Elements: 화면의 너비 전체를 차지
+: address, ul, li, dl, dt, ol,p, table, div
+
+Inline Elements: 컨텐츠의 너비만큼 차지
+: a, span, img
+
+style의 display의 값이 block level이거나 inline
+바꿀 수 있음.
+
+## Input
+
+input:button
+input:checkbox id -> label:for or checkbox in label
+input:color
+input:date
+input:datetime-local
+input:month
+input:email
+input:file
+input:hidden = 안보이는 요소, 예를 들어 사용자가 로그인을 했을 때 값을 저장.
+input:image = img element와 차이점: input은 버튼같은 역할 (위에 올렸을 때 마우스 버튼이 바뀜)
+input:number: min,max,step
+input:password
+input:radio -> checkbox와 비슷, 하나만 선택, name, value, checked ... name 기준
+input:range -> min, max, value
+input:search -> 검색용 키워드를 입력받을 때 사용
+input:tel -> 전화번호 
+input:text
+input:submit (form 안에서만 사용 가능)
+input:time
+input:url 		주소 정보 받기
+input:week		몇 번째 주인가?
+
+checkbox는 value를 설정함.
+color는 value를 자동으로 설정
+
+## Input Attributes
+
+readonly, disabled(readonly 비슷하지만 색깔 gray, 또한 submit하면 넘어가지 않음)
+maxlength="n" placeholder="str"(입력값에 대한 가이드 메세지),
+required, autofocus(자동으로 포커스됌), autocomplete="on"
+
+브라우저 캐시에 유저가 입력한 값들이 저장이되어서, 유저가 특정 키워드를 입력하는 순간, 캐시에 저장된 값이 있으면 가이드로 보임. (비밀번호는 절대 설정하면 안댐, or off)
+
+pattern="" (자바스크립트를 알아야 쓸 수 있음, 특히 정규식)
+사용자가 입력한 값이 패턴에 정의된 문법과 맞는지 체크
+ex)[0-9]{3}-[0-9]{4}-[0-9]{3}
+
+
+## Label
+
+for에 id값을 일치시켜서 맞추면, 
+
+1. 레이블을 클릭해도 사용자의 포커스가 input으로 감 
+2. 실제 시각 장애인들이나 웹 애플리케이션을 이용하는데 불편함을 느끼는 장애를 가지고 계신 분들은 웹을 이용할 수 있는 기기, 소프트웨어, 하드웨어 기기를 사용하게 됌. 그럴 때 역시도 레이블 이름이 input과 연결되어 있다고 정확히 연결해주는 게 좋음. 그래야 그 분들이 이용을 할 때 자신이 입력하려고하는 것이 어떤 정보에 대한 값을 입력하는 건지에 대해서 명확히 할 수 있음.
+
+## Select Box, Combo Box (선택할 항목이 너무 많을 경우 사용, 적을 경우 radio, checkbox)
+
+- select:name,id,`multiple
+-- option:value
+
+multiple은 잘 안쓰임.
+
+
+## textarea: cols,rows,style="width: 100%"
+
+여러 줄의 문자열을 입력할 때 사용하는 html의 요소.
+- rows는 더 입력할 수 있으나 화면에 보이는 건 10줄
+- cols보단 style을 많이 사용. rows도 height으로 처리 가능.
+
+
+## Datalist
+
+selectbox와 유사, 텍스트 박스처럼 값을 수정 가능. (이메일 뒤에 입력 같은 거에 사용?)
+
+- input: list=""
+- datalist: id="..."
+-- option: value
+
+datalist는 option tag의 종료 태그가 없어도 상관 없음.
+
+
+
+## Semantic
+
+의미를 가지고 있는 태그.
+
+어떤 html 컨텐츠를 담으려고 하는데, 태그 자체가 의미를 갖고 있어서 명확하게 어떤 용도로 사용하고 있는 지를 검색 엔진이나, 혹은 웹 해석기에게 알려주기 위한 용도로 만듬.
+
+ex)
+header
+nav
+article	: 그 자체로 의미를 가지는 독립된 내용
+footer
+section
+aside	: 주변 내용
+figure	: 이미지에 시각적 설명을 추가해주기 위한 내용 (html5에서 이미지와 캡션은 figure로 묶일 수 있음)
+img figcaption in figure
+main	: 문서의 주된 내용
+mark	: 마크되거나 하이라이트 된 글
+summary	: details를 위한 가시적인 제목
+details	: 사용자가 볼 수 있거나 숨겨진 추가적인 세부사항을 의미
+
+시맨틱 태그는 뭐가 있는 지 알아보기.
+
+
+
+input: autocomplete=off|on // input 요소에서 자동 완성 기능을 사용할 지 여부를 명시

@@ -1,0 +1,243 @@
+ToDo
+#
+1114
+:: Login Function 상태 코드 작성. (./_files/fc_status_code.txt)
+
+
+1112
+
+# React
+:: JSX
+:: Element
+ - 
+
+1110
+
+# Gin Framework Docs
+:: Build with json replacement
+ - json package: default - encoding/json, jsoniter, go_json
+ `$ go build -tags=jsoniter .`
+ `$ go build -tags=go_json .`
+
+:: Build without MsgPack rendering feature
+ ?MsgPack
+ `$ go build -tags=nomsgpack .`
+
+:: GET, POST, PUT, PATCH, DELETE, OPTIONS
+ - Parameters in path `c.Param()`
+ - Querystring parameters `c.Query()`
+ - Multipart/Urlencoded Form `c.PostFrom()`
+ - Map as querystring or postform `c.QueryMap(), c.PostFormMap()`
+ - Upload files
+ - Grouping routes
+ - Blank Gin without middleware by default `gin.New()` 
+ - Default With the Logger and Recovery middleware already attached `gin.Default()`
+ - Recovery behavior
+ - Write Log file
+
+
+
+1109
+
+# Port forwarding
+:: LG U+ Internet Modem
+ - Browser
+ - 192.168.219.1 ($ ipconfig Default Gateway)
+ - DHCP 할당 정보 (현재 유동 IP, MAC 주소를 고정 IP로)
+ - NAT 설정 - 포트포워딩 (내부 IP, 내부 포트, 서비스할 포트)
+
+:: Contorl Panel
+ - Windows Defender Firewall - Advanced settings - Inbound Rules - New Rule - Port
+ - 만약 Outbound Rule를 설정해야한다면 Inbound Rule과 같은 방식으로.
+
+:: (No need) Powershell
+ - netsh interface portproxy add v4tov4 `
+   listenaddress=... listenport=... `
+   connectaddress=... connectport=...
+
+ - netsh interface portproxy delete v4tov4 `
+   listenaddress=... listenport=...
+
+ - netsh interface portproxy show v4tov4
+
+
+# Status code
+:: 204
+
+- 클라이언트의 요청은 정상적이다. 하지만 컨텐츠를 제공하지 않는다.
+
+:: 401 (비인증: 아니다의 뜻이 강하다. 즉, 인증이 안된 상태다.)
+- 로그인이 안된 상태에서 로그인 권한으로 이동.
+
+:: 403 (미인증: 부족하다의 뜻이 강하다. 즉, 권한이 부족한 상태다)
+- 관리자가 아닌 상태에서 관리자 권한으로 이동.
+- 클라이언트가 권한이 없기 때문에 작업을 못함.
+
+:: 405
+하이퍼텍스트 전송 프로토콜(HTTP)의 405 Method Not Allowed 응답 상태 코드는 요청 방법이 서버에 의해 알려졌으나, 사용 불가능한 상태임을 가리킵니다.
+(로그인 api로 이동했으나 불가능한 address)
+
+:: 201
+- 회원가입 성공
+- 클라이언트의 요청을 서버가 정상적으로 처리했고 새로운 리소스가 생겼다.
+
+:: 
+
+# Gin Framework2
+:: DB Layer and ORM
+ - mysql
+ - tables
+ - ORM		// db와 code의 상호작용을 위해 사용하는 방식. // 객체지향적으로 db를 제어.
+ - GORM		// $ go get -u github.com/jinzhu/gorm
+   - embedding
+   - struct tag
+ - DB layer
+   - interface
+   - embedding	// *gorm.DB
+   - gorm.Open(dbname, con)
+
+:: Middleware
+ - logger, recovery
+ - etc.. open source middleware
+ - custom middleware
+
+:: Security
+ - 안전한 웹 애플리케이션: 웹 클라이언트와 웹 서버의 통신 데이터를 암호와.
+ - HTTPS	// http + tls // handshake, certificate, private key
+ - public key encryption, asymmetric cryptography
+ - digital certificate	// 제 3자가 서명 발행한 전자 문서.
+
+:: Gin HTTPS
+ - r.RunTLS(address, "cert.pem", "key.pem")
+ - OpenSSL
+
+:: Password Hashing
+ - hasing - save, validation
+
+# Clone coding: Go Music
+
+1108
+# Gin Framework
+:: DB
+ - data model
+ - DB layer
+ - struct tag: `json:"...'`
+ - upper case
+ - embedding
+ - DB layer interface
+
+:: Routing
+ - defining routing
+ - import gin
+ - RESTful API의 진입점 함수 선언
+ - gin engine object
+ - mapping
+ - group routing
+
+:: Handler
+ - implement http handler
+ - handler interface
+ - handler struct
+ - handler constructor
+ - handler method
+ - occur err -> return err json, http status (*gin.context JSON())
+ - extract JSON doc of http.req.body and decoding to object (*gin.context ShouldBindJSON())
+ - (*gin.context Param())
+
+# Application
+:: DB Layer and ORM
+ - GORM (http://gorm.io)
+ - embedding
+ - struct tag: `gorm:"column:firstname" json:"firstname"`
+ - interface
+
+:: Middleware
+
+:: Auth
+
+
+1107
+# Golang
+:: Pointer
+ - pointer의 제로값: nil
+ - & (referencing)
+ - * (de-referencing)
+ - pointer receiver
+
+:: Function
+ - first-class function
+ - execute()
+
+:: Control Access
+ - exported function (대문자)
+ - unexported function (소문자)
+
+:: Closure
+
+:: Array
+:: Slice
+ - pointer
+ - length
+ - capacity
+ - cap()
+ - copy()
+ - append()
+ - make()
+
+:: Map
+
+:: Struct, Interface
+ - struct (struct literal, dot notation)
+ - struct pointer
+ - method
+ - method receiver
+ - type embbeding
+ - interface
+ - type assertion
+
+:: if, switch
+ - initialize variable
+ - fallthrough
+
+:: Loop
+ - array, slice, for...range
+
+:: Panic
+ - panic
+ - recover
+ - defer
+
+:: Concurrency
+ - goroutine
+ - channel
+   - regular
+   - buffered
+ - select
+ - sync package
+   - mutex
+
+# overall side of gin framework
+
+# windows port fowarding
+
+:: cmd 관리자 권한 실행
+
+:: 포트포워딩 목록 확인
+$ netsh interface portproxy show v4tov4
+
+:: 포트포워딩 설정
+$ netsh interface portporxy add v4tov4 `
+listenaddress=127.0.0.1 listenport=<port> `
+connectaddress=<ip> connectport=<port>
+
+:: 포트포워딩 삭제
+$ netsh interface portproxy delete v4tov4 `
+listenaddress=127.0.0.1 listenport=<port>
+
+:: ip=192.168.219.102, oracle_port=1522, redis_port=6379, pg_port=5432
+
+
+1106
+Go docs tutorial
+Solution vscode error (glsp)
+

@@ -1,0 +1,53 @@
+1106
+
+golang: command: go mod tidy
+
+
+go mod tidy:
+- go.mod flie이 module의 source code와 일치하는 지 확인.
+
+- 현재 모듈의 패키지 및 종속성을 구현하는 데 필요한 누락된 모듈 요구 사항을 추가.
+- 관련 패키지를 제공하지 않는 모듈 요구 사항 제거.
+
+- 또한 누락된 항목을 go.sum file에 추가하고, 불필요한 항목은 제거.
+
+
+flags:
+- -e flag: go mod tidy가 패키지들을 불러오는 중에 오류가 발생해도 진행.
+- -v flag: go mod tidy가 제거된 모듈에 대한 정보를 표준 오류로 출력.
+
+
+feature:
+- go mod tidy는 main의 모든 패키지와 import한 모든 패키지를 재귀적으로 불러와서 작동.
+  (tests에 의해 import된 패키지도 포함, 다른 모듈 속에서의 tests 포함)
+
+- go mod tidy는 모든 build tags가 활성화 된 것처럼 작동.
+  (source 파일들이 정상적으로 build되지 않더라도 custom build tags가 필요한 플랫폼 별 source 파일들을 고려)
+  (한 가지 예외: ignore build tag는 활성화되지 않으므로, build 제약조건 \\ +build ignore을 가진 파일은 고려하지 않음)
+
+- go mod tidy는 다른 패키지들에 의해 명시적으로 import된 패키지가 아니라면 testdata라는 디렉토리 속의 main 모듈의 패키지 혹은 . 혹은 _로 시작하는 이름의 main 모듈 패키지를 고려하지 않음.
+
+- go mod tidy가 패키지 집합을 불러오면, 
+
+- require 지시어에 대한 '// indirect' 주석을 추가하거나 제거
+- '// indirect'는 main 모듈의 패키지에서 import된 패키지를 제공하지 않는 모듈을 나타냄.
+- 
+
+
+words:
+
+missing N: 누락된 N
+requirements necessary: 요구 사항
+
+despite -: -에도 불구하고
+
+as if: 마치 -인 것 처럼
+n-specfic: n별
+require: -을 필요로 하다.
+constraint: 제약조건
+
+indirect: 간접적인, 우회하는
+denote: 조짐을 보여주다, 나타내다.
+
+
+cause A to B: A가 B 되도록 하다. A가 B 하도록 유발하다(야기하다).

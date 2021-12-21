@@ -1,0 +1,34 @@
+1104
+
+
+Ajax
+: Asynchronous JavaScript And XML
+
+- 비동기 HTTP 통신
+- request와 response를 비동기 방식으로 처리할 수 있음.
+- jQuery와 같이 쓰이는 경우가 많음.
+
+---js
+// 순수 Ajax
+const req = new XMLHttpRequest();
+const url = '...';
+req.addEventListener('load', callback);
+req.open(METHOD, url);
+req.send();
+---
+
+- 기존 Web에서 어떤 리소스를 비동기로 요청하기 위해서는 XHR(XML HTTP Request) 객체를 사용했어야 했으나, XHR은 잘 디자인된 API가 아님. 요청의 상태나 변경을 구독하려면 이벤트를 등록해서 변경사항을 받아야했고, 요청의 성공, 실패 여부나 상태에 따라 처리하는 로직이 들어가기 좋지 않았음.
+
+- 이를 보완하기 위해 HTTP 요청에 최적화 되어 있고, 상태도 잘 추상화되어 있는 API들이 생겨남. 대표적으로 Axios와 Fecth가 그 예.
+
+
+
+Axios
+: Node.js와 브라우저를 위한 HTTP 통신 라이브러리.
+: 비동기로 HTTP 통신을 가능하게 해주고, 반환을 Promise로 해주기 때문에 response를 처리하기 쉬움.
+
+
+Fetch
+: ES6부터 JS 내장 라이브러리.
+: Promise기반으로 만들어졌기에 Axios와 마찬가지로 데이터를 다루는데 어렵지 않으며, 내장 라이브러리라는 장점으로 인해 상당히 편리.
+

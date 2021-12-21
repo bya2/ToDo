@@ -1,0 +1,97 @@
+/* Menu */
+
+/* Float */
+/* -- Lists */
+/* -- Overflow */
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: red;
+}
+
+/* Vertical Navigation Bar */
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+
+  width: 25%;
+  height: 100%;
+
+  position: fixed;
+}
+
+/* elements in several li */
+/* 문자열들은 블록이 아니기 때문에 블록으로 만든 후 크기를 매치해야함. */
+li els {
+  display: block;
+  width: 4rem;
+}
+
+/* Remove text-decoration */
+/* ex) 밑줄, 취소선, 윗줄 등 */
+a {
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+li els:hover {
+  background-color: hsla(30, 100, 50, 0.3);
+  color: white;
+}
+
+/* Add Exception in above*/
+li els:hover:not(.active) {
+  /* 
+    ...
+  */
+}
+
+/* Horizontal Navigation Bar */
+
+ul {
+  /* 위와 같음 */
+}
+
+li {
+  /* float를 사용하면 a태그의 display가 block */
+  float: left;
+}
+
+li a {
+  display: block;
+}
+
+li {
+  border-right: 0.01rem solid #bbb;
+}
+
+li:last-child {
+  border-right: none;
+}

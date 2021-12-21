@@ -1,0 +1,36 @@
+1106
+
+golang: youtube: coding-apple
+
+
+Need compile
+: compile을 해야 컴퓨터가 실행 가능.
+: name.go -> name.exe
+
+: c와 같은 언어와 차이점은, go는 script 언어처럼 compile 시간이 매우 짧음.
+: concurrency, 병행 처리: 동시에 코드 여러 줄 실행 가능. (코드 왼쪽에 go 키워드)
+
+
+Go 용도
+- 웹 서버 제작 (HTTP 요청 처리하는 라이브러리, DB 데이터 처리 라이브러리, JSON 형식 다루는 라이브러리)
+
+- MSA(Microservice) 큰 회사들이 한 파일에다가 서버를 쭉 작성 - 관리 너무 힘듬 - 독립적인 단위로 쪼갬. - 언어의 자유도가 생김 (독립적이라 다른 곳에 의존성이 없음)
+
+- Cloud service	
+
+
+Go 특징
+- exe 실행 파일 생성도 빠름 $ go build . or go build <file-name>
+- 변수 선언 쉬움. `var v-name type = val` or `v-name := val`
+- if else 쉬움. (소괄호 없음)
+- array 가능 `v-name := []type{vals}` or `v-name := [len]type{vals}` []type{vals}는 slice array
+- Map 가능 `v-name := make(map[key-type]val-type)
+- pointer 기능 `v2-name := $v1-name` or ``v2-name := *v1-name``
+- function 기능
+- concurrency 코드 동시 실행
+- 에러 처리, 함수 흐름 제어 Write 함수 에러 발생으로 프로세스 실행이 의미가 없어짐. - panic을 발생시킴. - 프로그램이 panic을 만나면 현재 함수의 실행을 즉시 중지하고 실행 중인 스택 상의 고루틴을 하나씩 종료. - 고루틴이 모두 종료되면 최종적으로 프로그램이 종료. - 단, 고루틴 내에서 발생한 에러에 대해 조치 후 정상적인 복구가 가능하다면 고루틴 종료 전에 호출되는 recover 함수에 조치 사항을 정의함으로써 프로그램 자체를 종료하지 않고 정상 재개
+
+- defer문은 함수가 종료되기 직전에 수행되는 문장 (함수 내 사용한 리소스 반환 처리와 같은 상황에서 유용)
+
+
+time.Sleep(time.Second * 1)

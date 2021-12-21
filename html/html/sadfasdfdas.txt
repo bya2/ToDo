@@ -1,0 +1,15 @@
+box-sizing: border-box
+
+
+패딩 
+통일성과 자유성
+
+
+
+더미 데이터 삽입을 통한 하드 코딩 개시
+
+i18n
+
+Recoil
+
+SASS

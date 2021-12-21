@@ -1,0 +1,21 @@
+토큰
+파싱
+
+호이스팅
+
+예약어 중
+debugger, default, delete, do, instanceof, typeof, void, yield
+
+
+
+
+핵심 가치
+
+
+우리 가 구현하는 것중에서 이거만
+
+전문성, 컬러피커
+
+
+js는 타입이 없으므로, 숫자를 모두 64비트 부동소수점으로 표현
+

@@ -1,0 +1,363 @@
+CSS
+
+폰트 크기는 상대적으로? 절대적으로?
+색은 보통 rgba hsla를 쓰는가?
+앞글자만 절대적으로 크기 하는 법
+
+## External CSS
+<link rel="stylesheets" href="path/to/path/filename.css">
+
+## Internal CSS
+## Inline CSS
+
+
+## Color
+[ https://www.w3schools.com/css/css_colors.asp ]
+
+ColorNames, Background, Text, Border, Color values(rgb, hex, hsl, rgba, hsla)
+
+
+hexadecimal color: #rgb #rrggbb
+
+hue, saturation, lightness: 색조, 채도, 밝기
+h: 0-360 red - green - blue
+s: 0-100% gray - red
+l: 0-100% black - white
+a: 0-1.0
+
+## Background
+[ https://developer.mozilla.org/ko/docs/Web/CSS/background-image ]
+background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)),
+		  url("..../");
+
+background-repeat: 키워드; | 가로 세로;
+repeat-x; repeat; space; round; no-repeat; space repeat;
+
+background-position: right top;
+
+background-attachment: 키워드
+fixed; scroll;
+
+shorthand: background: color image repeat attachment position;
+
+
+## Border
+
+Style:
+dotted, dashed, solid, double,
+groove, ridge, inset, outset, 
+none, hidden
+
+Width: all | topbottom sides | top right bottom left
+px, pt, cm, em, rem
+
+Sides:
+border-top-style: dotted;
+border-right-style: solid;
+...
+
+Rounded Borders:
+border-radius: px, pt, cm, em ,rem...
+
+
+## Margin
+
+Individual Sides
+Shorthand
+auto
+inherit
+Collapse
+
+
+## Padding
+
+length, %, inherit
+
+
+## Width, Height
+
+auto, length, %, initial, inherit
+
+max-width
+
+width: w3schools는 992px부터 양쪽 사이드가 사라하고, 메뉴판을 설정함.
+
+width: 네이버는 1130이 센터 고정
+
+
+## Outline
+
+outline-style: "value";
+dotted, dashed, solid, double,
+groove, ridge, inset, outset, 
+none, hidden
+
+outline-width: "size";
+
+outline-color: "val";
+name, hex, rgb, hsl, invert(역전)
+
+outline: width style(required) color
+
+outline-offset: "length";
+boder/edge와 outline 사이의 간격
+
+
+## Text
+
+color: name hex rgb
+
+text-align: left right center justify(양쪽 정렬) initial inherit
+
+direction: rtl
+unicode-bidi: bidi-override;
+
+vertical-align: baseline(디폴트), text-top(부모폰트맨위), text-bottom(부모폰트맨아래), sub(아래첨자맞춤), super(윗첨자맞춤)
+
+text-decoration: overline(윗줄), line-through(취소선), underline(밑줄);
+
+취소선, 밑줄 html 태그 있음.
+
+text-transform: uppercase(대문자로), lowercase(소문자로), capitalize(앞글자대문자로)
+
+text-indent: length; 문장 맨 앞 공백
+
+letter-spacing: length; 문자 간 공백 (띄어쓰기도 문자로 취급됌)
+
+line-height: number; 단락x 줄 간격o (1기준)
+
+word-space: length; 띄어쓰기 간격
+
+whtie-space: nowrap; // 다음 줄로 넘어가지 않음
+
+text-shadow: horizontal(length) vertical(length) blureffect(length) color
+문자 색을 화이트로, 그림자 색을 검은색으로 하면 툭 튀어나온 것처럼 할 수 있음.
+,(쉼표)를 이용하여 여러 효과 적용 가능.
+
+
+## Fonts
+
+font-family
+Web safe Fonts
+
+ltalic과 oblique는 거의 차이 없음
+
+font-style: 기울임 등
+font-weight: 굵기
+
+font-variant: small-caps; (소문자를 작은 대문자로)
+
+font-size: % px em vw(상대적)
+
+Google:
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+font-family: "Sofia", sans-serif;
+```(뭔진 모르겠는데 구글로 효과를 불러오면 클래스명으로 바로 적용 가능)
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
+<style>
+body {
+  font-family: "Sofia", sans-serif;
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
+
+<h1 class="font-effect-fire">Sofia on Fire</h1>
+<p class="font-effect-fire">Lorem ipsum dolor sit amet.</p>
+<p class="font-effect-fire">123456790</p>
+
+</body>
+</html>
+```
+```
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+<style>
+body {
+  font-family: "Sofia", sans-serif;
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
+
+<h1 class="font-effect-neon">Neon Effect</h1>
+<h1 class="font-effect-outline">Outline Effect</h1>
+<h1 class="font-effect-emboss">Emboss Effect</h1>
+<h1 class="font-effect-shadow-multiple">Multiple Shadow Effect</h1>
+
+</body>
+```
+
+서로보완
+=슈퍼패밀리
+=올바른 대비
+=대표 글꼴 하나
+
+shorthands: font: style variant weight size/line-height font-family
+
+
+## Icons
+
+Font Awesome Icons
+<script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+Bootstrap Icons
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+Google Icons
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+## Links
+
+/* unvisited link */
+a:link {
+  color: red;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+Lists:
+
+- list-style-type: circle; square; (ul)/ upper-roman; lower-alpha; (ol)
+- list-style-image: url('path/to/path'); (ul)
+- list-style-position: outside; inside;
+
+- list-style: type position image;
+
+
+## Table
+
+table의 생김새를 알자. boder-collapse: collapse;를 안했을 때의 생김새
+table은 네모고
+th, td는 그안의 네모
+
+width
+height
+text-align
+vertical-align
+
+
+
+## Words:
+
+Margin Collapse: 여백 축소
+
+stretched
+
+fallbacks: 대체 목록
+
+
+## Table
+
+- th, td
+: padding, text-align
+
+- tr:hover:nth-child(odd|even)
+
+- th
+: background-color, color
+
+- overflow-x: auto;
+: 페이지가 아닌, 해당 div에서만 x축으로 스크롤
+
+
+## Display
+
+- display
+: none, block, inline
+
+- display: none      (remove in display)
+- visibility: hidden (hide in display)
+
+
+## Width and Max-Width
+
+- width
+: 고정 크기
+
+- max-width
+: 가변 크기
+
+
+## Position
+position: name;
+: static, relative, fixed, absolute, sticky, 
+
+- static: 기본값. 해당 위치
+- relative: 각각의 방향을 기준으로 태그 안쪽 방향으로 이동
+- fixed: static 속성을 가지고 있지 않은 조상을 기준으로 위치 고정
+- sticky: 스크롤 위치에 따라 relative, fixed 사이에서 토글
+
+
+## Clip
+- clip: shape, initial, inherit
+
+- shape: rect(topl, rightl, bottonl, leftl)
+
+- clip-path: circle(%)
+
+클립이랑 다른 점을 찾아볼 수 없다.
+
+
+## Z-Index
+- z-index: -num ~ +num
+
+: 값이 낮을 수록 사용자에게서 멀고, 값이 클 수록 사용자에게 가까움
+: position 속성이 설정된 요소에 대해서만 유효.
+
+: 즉, z축 상의 위치를 뜻함.
+
+- z-index가 없이는 html 코드 안에서 마지막에 정의된 요소가 맨 위에 위치.
+
+## Overflow
+- overflow: visible, hidden, scroll, auto
+
+- overflow-x
+- overflow-y
+
+- 컨텐츠가 길거나 클 때, 요소 밖으로 보이게 할지, 숨길지, 스크롤로 처리할 지 선택
+
+
+## Float
+- float: none(d), left, right, inherit
+
+
+
+
+
+
+

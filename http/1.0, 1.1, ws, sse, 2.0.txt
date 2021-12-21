@@ -1,0 +1,49 @@
+1105
+
+HTTP
+
+
+HTTP 1.0
+
+open - req(method) - res - close - open - req - res - close - ...
+
+HTTP 1.1
+
+open - req(method) - res - req - res - ... - close
+
+WebSockets
+
+open - Handshake(HTTP GET 1.1 UPGRADE) - communication - close
+
+SSE
+
+open - req(ex: GET text/event-stream) - res(text/event-stream, Transfer-Encoding: chunked) - res - res ... - close
+
+
+SSE use cases
+
+- Live Feed
+- Showing client progress
+- Logging
+
+
+SSE Pros and Cors
+
+Pros
+1. Lightweight
+2. HTTP & HTTP/2 compatible
+3. Firewall friendly (standard)
+
+Cons
+1. Proxying is tricky
+2. L7 L/B challenging (timeouts)
+3. Stateful, difficult to horizontally scale
+
+
+Working:
+1. response에서 헤더 'Content-Type'을 'text/event-stream'으로 설정.
+2. browser에서
+---
+const sse = new EventSource(url);
+sse.onmessage = console.log;
+---

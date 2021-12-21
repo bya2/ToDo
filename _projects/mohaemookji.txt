@@ -1,0 +1,19 @@
+#
+1114 ~
+:: API의 전체적인 코드 개선 중.
+:: Token(Youtube Data API 할당량) 사용 방식 개선 예정
+
+
+#
+1107
+Youtube API 할당량 - 1 Routine 마다 다른 토큰으로 변경.
+
+#
+1106
+혹시 유튜브 정보들 중에서 한빈 씨 쪽으로 Rest api로 보내줬으면 하는 데이터들이 있는지.
+
+search: 비디오id, 채널id, 플레이리스트id, 썸네일url, 그 외 검색 관련 정보들
+(https://developers.google.com/youtube/v3/docs/search)
+
+video: 비디오id, 동영상(업로드날짜, 채널id, 제목, 설명, 썸네일url, 채널제목, tag들 목록, 카테고리 목록, 동영상 길이, 라이센스 콘텐츠 표시 여부, 동영상 등급 등)
+(https://developers.google.com/youtube/v3/docs/videos)

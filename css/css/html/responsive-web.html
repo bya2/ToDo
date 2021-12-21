@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        /* border: 0.01rem solid red; */
+      }
+
+      body {
+        background-color: rgb(214, 214, 214);
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0 2.5rem;
+        /* padding: 10px; */
+      }
+
+      header {
+        text-align: center;
+        background-color: white;
+      }
+
+      .title {
+        padding: 0.5rem;
+        margin: 0;
+      }
+
+      .title.main {
+        font-size: 2rem;
+      }
+
+      .title.sub {
+      }
+
+      h1,
+      h3 {
+        margin: 0;
+      }
+
+      .nav.top {
+        background-color: #333;
+        overflow: hidden;
+        margin: 0;
+        padding: 0; /* 이게 없으면 nav 처음 리스트가 떨어짐*/
+        margin-bottom: 1.5rem;
+      }
+
+      .nav.top li {
+        list-style-type: none;
+        padding: 0;
+        float: left;
+      }
+
+      .nav.top li.nav.last {
+        float: right;
+      }
+
+      .nav.top a {
+        /* float: left; */
+        display: block;
+        color: white;
+        padding: 0.8rem 1rem;
+        text-decoration: none;
+        text-align: center;
+      }
+
+      .nav.top li .nav.last {
+        /* float: right; */
+      }
+
+      .nav.top li a:hover {
+        background-color: gray;
+        color: black;
+      }
+
+      .col-75,
+      .col-25 {
+        float: left;
+      }
+
+      .col-75 {
+        width: 75%;
+      }
+
+      .col-25 {
+        width: 25%;
+        padding-left: 1.5rem;
+      }
+
+      .row::after {
+        display: table;
+        content: "";
+        clear: both;
+      }
+
+      .card {
+        background-color: white;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      .fakeimg {
+        background-color: #aaa;
+        width: 100%;
+        padding: 20px;
+      }
+
+      footer {
+        background-color: gray;
+        text-align: center;
+        width: 100%;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+      }
+
+      @media screen and (max-width: 800px) {
+        .col-75,
+        .col-25 {
+          width: 100%;
+          padding: 0;
+        }
+      }
+
+      @media screen and (max-width: 800px) {
+        .nav.top li {
+          float: none;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="title main">
+        <h1>My Website</h1>
+      </div>
+      <div class="title sub">
+        <h3>Resize the browser window to see the effect.</h3>
+      </div>
+    </header>
+
+    <nav>
+      <ul class="nav top">
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li class="nav last"><a class="nav last" href="#">Link</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <div class="row">
+        <div class="col-75">
+          <div class="card">
+            <h2>TITLE HEADING</h2>
+            <h5>Title description, Dec 7, 2017</h5>
+            <div class="fakeimg" style="height: 200px">Image</div>
+            <p>Some text..</p>
+            <p>
+              Sunt in culpa qui officia deserunt mollit anim id est laborum
+              consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+              nostrud exercitation ullamco.
+            </p>
+          </div>
+          <div class="card">
+            <h2>TITLE HEADING</h2>
+            <h5>Title description, Sep 2, 2017</h5>
+            <div class="fakeimg" style="height: 200px">Image</div>
+            <p>Some text..</p>
+            <p>
+              Sunt in culpa qui officia deserunt mollit anim id est laborum
+              consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+              nostrud exercitation ullamco.
+            </p>
+          </div>
+        </div>
+        <div class="col-25">
+          <div class="card">
+            <h2>About Me</h2>
+            <div class="fakeimg" style="height: 100px">Image</div>
+            <p>
+              Some text about me in culpa qui officia deserunt mollit anim..
+            </p>
+          </div>
+          <div class="card">
+            <h3>Popular Post</h3>
+            <div class="fakeimg"><p>Image</p></div>
+            <div class="fakeimg"><p>Image</p></div>
+            <div class="fakeimg"><p>Image</p></div>
+          </div>
+          <div class="card">
+            <h3>Follow Me</h3>
+            <p>Some text..</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <h2>Footer</h2>
+    </footer>
+  </body>
+</html>
