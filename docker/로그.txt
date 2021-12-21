@@ -1,0 +1,43 @@
+* 도커 기록
+`0926`
+# 실행
+docker run --name o-go-docker -d -p 5000:8080 bya2/go-docker
+
+# 실행
+docker volume create mongodb
+docker volume create mongodb_config
+
+docker network create 
+
+docker run --name o-go-docker -d -p 5000:8080 --rm -v
+
+볼륨: mongodb, mongodb_config
+네트워크: 
+환경 변수 .env
+
+# docker-compose
+```
+version: "3.9"
+services:
+  app:
+    build: .
+    profiles: ["backend"]
+    depends_on:
+      - db
+    ports:
+      - "5000:8080"
+    volumes:
+      - ".:/app" (바인드 마운트)
+      - ""
+    environment:
+  db:
+    image: "mongo:4.4.3"
+    profiles: ["backend"]
+```
+docker-compose --env-file ./config/.env.prod up 
+
+docker-compose up -d (프로필 없는 것만 실행)
+
+
+
+docker-compose -f docker-compose.yml -f ... up

@@ -1,0 +1,34 @@
+0930
+
+HTTP 응답 헤더
+
+Access-Control-Allow-Origin
+
+    - Access-Control-Allow-Origin: 프론트 주소
+    - 서버에서 프론트 주소에 CORS 요청을 허용하겠다는 의미.
+
+    - 요청을 보내는 프론트 주소와, 요청을 받는 백엔드 주소가 다르면 CORS 에러 발생.
+    - 이 때 서버에서 응답 메세지 Access-Control-Allow-Origin 헤더에 프론트 주소를 적어주어야 에러가 나지 않음.
+    - 프로토콜, 서브도메인, 도메인, 포트 중 하나만 달라도 CORS 에러 발생.
+
+
+Content-Disposition
+
+    - 응답 본문을 브라우저가 어떻게 표시할 지 알려주는 헤더.
+    - inline: 웹페이지 화면에 표시.
+    - attachment; filename: 'file': 다운로드.
+	
+Location
+    : 300번대 응답이나 201 Created 응답일 때 어느 페이지로 이동할 지 알려주는 헤더.
+    - 브라우저가 리다이렉트하도록 함.
+
+Content-Security-Policy
+    : 다른 외부 파일을 불러올 경우, 차단할 소스와 불러올 소스를 여기에 명시.
+    - 해커들에 의해 원하지 않는 외부 파일을 불러올 수 있으므로, 허용할 외부 소스 지정.
+
+    - Content-Security-Policy: default-src 'self' 	자신의 도메인 파일만 가져올 수 있음.
+    - Content-Security-Policy: default-src https: 	https 로만 외부 파일을 가져올 수 있음.
+    - Content-Security-Policy: default-src 'none' 	외부 파일을 가져올 수 없음.
+
+    - default-src는 모든 외부 소스임.
+    - font-src, script-src, img-src ...

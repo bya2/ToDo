@@ -1,0 +1,21 @@
+*Tag
+
+*Usage
+$ docker tag SOURCE_IMAGE[:TAG] TAGET_IMAGE[:TAG]
+
+*Description
+SOURCE 이미지를 참조해서 TAGET 이미지 태그를 생성.
+NAMES와 TAGS를 사용하여 이미지를 그룹화한 다음, 도커 허브의 공유 이미지에 업로드할 수 있음.
+
+*Image Comply
+1. 이미지 이름은 '/'로 구분된 이름 구성 요소로 구성. (선택적으로 registry hostname을 앞에 붙임.)
+2. 호스트 이름은 표준 DNS 규칙을 준수해야함. 밑줄은 포함할 수 없음.
+3. 호스트 이름이 있다면, :8080와 같은 형식으로 포트 번호가 따라올 수 있음.
+    호스트 이름이 없다면, command는 Docker's public registry를 사용. (기본적으로, registry-1.docker.io에 위치함.)
+4. 이름 구성요소에는 소문자, 숫자, 구분 기호를 사용할 수 있음. (구분 기호는 마침표, 밑줄, '/'로 정의.)
+
+*Tag Comply
+1. 유효한 ASCII
+2. 대소문자, 숫자, 밑줄, 마침표, '/' 등을 사용할 수 있음.
+3. 태그 이름은 마침표나, '/'로 시작할 수 없음.
+4. 최대 128자 포함.

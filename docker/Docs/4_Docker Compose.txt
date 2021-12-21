@@ -1,0 +1,64 @@
+1010
+
+Docker Compose
+
+ 다중 컨테이너 애플리케이션의 정의와 공유를 돕기 위해 개발된 툴.
+
+ Compose로 서비스를 정의하기 위한 YAML 파일 생성
+ 단일 명령으로 모든 것을 회전시키고 해체 가능(?) - (docker-compose up, docker-compose down)
+
+ -이점: 
+        - 애플리케이션 스택을 파일로 정의**,
+        - 애플리케이션 스택을 프로젝트 저장소의 루트에 보관, 
+        - 다른 사용자가 해당 프로젝트에 쉽게 기여 가능.
+
+        0. 그 결과: 누군가는 저장소(ex. GITHUB)를 clone하고 Compose 애플리케이션을 실행하기만하면 됌.
+
+ -정리:
+        - 서비스 이름은 자동적으로 네트워크 별칭이 됨.
+        - ports 정의는 `short syntax`와 `long syntax`가 있음.
+        - volumes(볼륨 매핑 정의)도 short, long syntax가 있음.
+        - 최상위 'volumes:' 섹션에서 볼륨을 정의하고 'services:' 섹션에서 마운트지점을 지정(볼륨 매핑 정의)해야함.
+        - volumes 섹션에서 볼륨을 '볼륨 이름: 옵션' 과 같은 방식으로 정의.
+        - 바인드 마운트는 volumes 섹션에서 정의하지 않음. 볼륨 매핑에서만 정의.
+        - docker-compuse up은 애플리케이션 스택을 실행하는 것.
+        - **Compose는 애플리케이션 스택에 대한 '전용' 볼륨이나 네트워크를 자동적으로 생성함.
+        - docker-compose logs는 타이밍 관련 문제를 주시할 때 엄청나게 유용함. (-f: 생성될 때마다 실시간 출력)
+	- 특정 서비스에 대한 로그만 보고 싶다면: docker-compose logs -f <service-name>
+        - 애플리케이션 스택을 해체(docker-compose down)하면, 컨테이너들은 중지되고, 네트워크(전용)은 제거됌. 단, 명명된 볼륨은 제거되지 않음. 제거하고 싶다면, docker-compose down --volumes
+
+ 작업:
+    - Compose 파일 생성 (docker-compose.yml)
+    - Schema 버전 정의 (Docs: Compose file reference: https://docs.docker.com/compose/compose-file/)
+	version: "3.x"
+    - Services 목록 정의 (Services = Containers)
+	services:
+    - App Service 정의
+	app: 						// Service entry or Service name
+	    image: node:12-alpine 				// Image for the container
+	    command: sh -c "yarn install && yarn run dev"
+	    ports: 						// Publish flag
+	        - 3000:3000
+	    working_dir: /app 				// Working directory
+	    volumes: 					// Volume mapping
+	        - ./:/app 					// Bind mounts (-v "$(pwd):/app")
+	    environments:					// Environment variables
+	        NAME: VALUE					
+	mysql:
+	    image: mysql:5.7
+	    volumes:
+	        - todo-mysql-data:/var/lib/mysql		// Volume
+	    environments:
+	        NAME: VALUE
+    - 볼륨 정의
+	volumes:						// Top-level volumes: section
+	    todo-mysql-data:				// only volume name -> default option
+    - 애플리케이션 스택 실행
+	docker-compose up <options>
+    - 로그 확인
+	docker-compose logs <options>
+	-f: 실시간 확인
+    - 애플리케이션 스택 해체
+	docker-compose down
+	    
+

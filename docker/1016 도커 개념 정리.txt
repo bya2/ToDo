@@ -1,0 +1,33 @@
+1016
+
+인프라 관리 - 도커 - 개념 정리
+
+---
+# 기반 지식
+- 정보 기술(IT) 인프라
+ : 애플리케이션을 가동시키기 위해 필요한 하드웨어나 소프트웨어, 네트워킹 구성 요소, 운영 체제, 데이터 스토리지 등.
+ = 시스템 요구사항으로는 기능적, 비기능적 요구사항으로 정리할 수 있음.
+
+- 변경 불가능한 인프라(Immutable Infrastructure)
+ : 서버가 배포된 후 절대 변경되지 않는 인프라. 서버에 변경이 필요하면, 아예 새로운 서버를 구축한다.
+ = 
+
+- 코드로 인프라 관리(Infrastructure as Code)
+ : 코드를 통해 인프라를 구성하고 관리하는 방식.
+ = ex) Bootstrapping, Configuration, Orchestration
+ = Bootstrapping (OS 설치/가상환경 설정/네트워크 구성 설정/Vagrant)
+ = Configuration (OS 설정/미들웨어 설정/Chef, Ansiable, Puppet, Itamae)
+ = Orchestration* (애플리케이션 배포/서버 군집 관리/Kubernetes)
+
+- 클라우드
+ : 네트워크를 통해 인프라, 플랫폼 등을 제공받는 서비스
+ = ex) PaaS*, SaaS, IaaS
+
+---
+# 도커 지식
+
+- 컨테이너
+ : 시스템에서 격리된 프로세스. 
+
+- 컨테이너 이미지
+ : 컨테이너를 실행할 때 필요한 격리된 파일 시스템을 제공하는 도커 객체.

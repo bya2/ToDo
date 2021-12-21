@@ -1,0 +1,25 @@
+JPA
+ java application에서 relational database를 사용하는 방식을 정의한 interface. 특정 기능을 하는 library가 아님. relational database를 어떻게 사용해야하는 지 정의하는 한 방법일 뿐임.
+
+ 단순히 기술 명세임. 때문에 구현이 없음.
+
+ 패키지: javax.persistence(interface, enum, Exception, Annotation으로 이루어짐.)
+ JPA의 핵심이 되는 EntityManager은 javax.persistence.EntityManager라는 파일에 interface로 정의되어 있음.
+
+ 
+ 기존의 반복 코드, 기본적인 SQL
+
+
+Hibernate
+ : JPA의 구현체. javax.persistence.EntityManager와 같은 인터페이스를 직접 구현한 라이브러리.
+
+
+
+
+spring.jpa.show-sql=true
+ jpa가 날리는 sql을 볼 수 있다.
+ hibernate가 만들어준 sql(prepared statement)을 log에서 보려면 true.
+
+
+
+back-end api: client가 어떻게 서버를 사용해야 하는지를 정의.

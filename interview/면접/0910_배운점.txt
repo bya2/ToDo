@@ -1,0 +1,36 @@
+Node.js
+  'use-strict'
+  fork
+
+  for await ... of ...
+
+Javascript
+  prototype
+  여러 개의 변수로 프로토타입 선언 vs new 연산자를 사용해 생성자를 사용해서 프로토타입 선언
+  메모리
+
+OracleDB
+  MySQL과 다른점
+  
+인터뷰
+  당당하게 말하기
+  자기주장 확실하게 하기
+  애처럼 굴지 않기
+  두괄식으로 말하기 (대주제, 중주제, 소주제)
+  자기 코드에 확신을 가지고 그에 대해서 설명할 수 있기.
+
+모듈에 대해서 아는 것은 중요한 점이 아님.
+오히려 모듈을 어떻게 만들 수 있는지가 중요함.
+
+1. 회사에 지원한 사유.
+2. 자신의 장점
+3. 자신의 단점
+4. 
+10. 물어보고 싶은 것.
+
+코딩 "구구단"
+데이터베이스 
+데이터베이스 inner join, outer join, full join, full join - inner join, left outer join - inner join
+go "포인터"
+
+제가 뭉

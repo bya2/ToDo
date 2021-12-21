@@ -1,0 +1,104 @@
+* 환경변수
+
+docker compose [옵션] up
+
+# 컴포즈 파일에서 환경 변수를 대체.
+1. ".env"라는 기본 환경 변수 파일을 사용해서 대체.
+2. "--env-file <path>"라는 커맨드를 사용해서 환경 변수 파일의 경로를 제공.
+
+컴포즈는 docker-comopse를 실행하는 셸 환경에서 변수 값을 사용함.
+
+$VARIABLE 과 ${VARIABLE} Syntax 둘 다 지원됨.
+2.1 file format을 사용할 때, 
+	${VARIABLE:-default}	: 
+	${VARIABLE:default}	:
+
+	${VARIABLE:?err}		:
+	${VARIABLE:err}		:
+
+$$는 컴포즈가 값을 보간하는 것을 막고, 컴포즈가 처리하지 않는 환경 변수를 참조할 수 있도록 함.
+
+# The ".env" file
+
+docker-compose config
+
+config 커맨드는 터미널에서 이행된 애플리케이션 구성을 출력함.
+config는 현재 디렉터리임.
+
+# Using the "--env-file <file path>" option
+
+파일을 매개변수로 전달
+.env.ci, .env.dev, .env.prod 등으로 이름을 지어서 환경 변수를 보관할 수 있음.
+
+# Set environment variables in containers
+app:
+    environment:
+        - NAME=VALUE
+
+# Pass environment variables to containers
+셸로 환경 변수를 전달할 수 있음.
+docker run -e VARIABLE ...
+app:
+    environment:
+        - NAME
+
+# The “env_file” configuration option
+docker run --env-file=FILE ...
+app:
+    env_file:
+        - FILE(.env file) ex) web-variables.env
+
+# Set environment variables with ‘docker-compose run’
+docker-compose run -e NAME=VALUE ...
+docker-compose run -e NAME (값 없이 전달 가능)
+
+컨테이너에서 NAME 변수 값은 컴포즈가 실행되는 셸의 동일한 변수에 대한 값에서 가져옴.
+동일한 변수의 우선 순위
+1. 컴포즈 파일.
+2. 셸 환경 변수
+3. 환경 파일
+4. 도커 파일
+5. 정의되지 않은 변수
+
+* 프로필
+
+프로필을 사용하면, 서비스를 선택적으로 활성화하여, 다양한 사용 및 환경에 대한 컴포즈 애플리케이션 모델을 조정할 수 있다.
+
+이는 각 서비스를 0개 이상의 프로필에 할당함으로써 달성됨.
+
+할당되지 않아도 서비스는 시작되지만,
+할당되면 프로필을 활성화했을 때만 시작된다.
+
+이는 프로필이 오직 특정 시나리오에서 시작되어야하는 단일 docker-compose.yml 파일에서 추가적인 서비스를 정의하도록 함.
+
+# 프로필을 서비스에 할당
+
+프로필 이름의 배열을 가진 `profile` 속성을 통해 서비스는 프로필과 관련됌.
+
+프로필이 할당된 서비스는 프로필이 활성화 되었을 때만 시작될 수 있음.
+
+`profiles` 속성 없이 서비스는 활성화 될 수 있음.
+즉, `docker-compose up`을 했을 때, 프로필이 할당되지 않는 서비스만 실행됌.
+
+# 프로필 활성화
+
+`--profile` 커맨드 라인 옵션을 통해 프로필을 활성화할 수 있음.
+```
+docker-compose --profile <profile> --profile <profile> up
+```
+
+# 자동으로 활성화된 프로필과 의존성 해결
+
+프로필이 할당된 서비스가 커맨드에서 명시적으로 지정됐을 때, 그 프로필을 자동으로 활성화됌.
+따라서 프로필을 수동으로 활성화할 필요가 없음.
+이것은 일회성의 서비스와 디버깅 도구에 사용될 수 있음.
+
+docker-compose up은 프로필이 할당되지 않는 모든 서비스를 실행
+docker-compose run <service>는 서비스를 지정해서 실행 (이 때 해당 서비스는 프로필이 자동으로 활성화)
+
+docker-compose는 서비스의 프로필만을 활성화하고 종속성을 활성화하지 않음.
+따라서 depend_on 속성에 지정된 모든 서비스는 공통의 프로필을 가지고 있어야하고,
+아니면 프로필을 생략하여 항상 사용 가능하도록 해야함.
+혹은 일치하는 프로필을 명시적으로 사용하도록 설정해야함.
+
+* 파일과 프로젝트 간에 Compose 환경 설정 공유

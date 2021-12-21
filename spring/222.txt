@@ -1,0 +1,6 @@
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=none
+
+ jpa를 사용하면 객체를 보고 회원 객체 있잖아 그걸 보고 지가 테이블을 다 만들어요.
+ 테이블 만들어진 걸 쓸 것이라면 none (자동으로 생성하는 기능 none)
+ create로 하면 create table이 자동으로 만들어짐.

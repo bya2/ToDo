@@ -1,0 +1,47 @@
+0930
+
+요청 헤더(Request Header)
+
+host
+user-agent
+accept
+    accept-charset
+    accept-language
+    accept-encoding
+authorization
+origin
+referer
+
+* host
+    - 서버의 domain 이름. (port 포함)
+    - host 헤더는 반드시 하나가 존재해야함.
+
+* user-agent
+    - user가 request를 보낼 때 이용한 client(browser, os, ... 등)
+    
+    - '헤더'는 변경 가능하므로 믿으면 안됌.
+    - 그러나 대부분의 사람들은 헤더를 조작하지 않으므로, 이 헤더를 이용해 접속자 통계 등의 일에 활용.
+    - 어떤 client로 접속한 user에게 다른 client로 접속하라고 메세지 표시 가능.
+
+* accept
+    - request에서, 서버에 어떤 MIME의 데이터를 보내라고 명시. 그러한 형식의 응답을 처리함.
+*accept-charset
+    - request에서, 서버에 어떤 문자열 인코딩의 데이터를 보내라고 명시. 그러한 형식의 응답을 처리함.
+*accept-language
+    - request에서, 서버에 어떤 언어의 데이터를 보내라고 명시. 그러한 형식의 응답을 처리함.
+*accpet-encoding
+    - request에서, 서버에 어떤 알고리즘으로 컨텐츠를 압축해서 보내라고 명시. 그러한 형식의 응답을 처리함.
+
+* authorization
+    - 인증 토큰을 서버로 보낼 때 사용하는 헤더.
+    - 인증 토큰: JWT, Bearer
+    - '토큰 종류 토큰 문자' ex) authorization: Bearer XXXXXXXX
+
+* origin
+    - post 등의 메서드로 requset을 보낼 때, request가 시작된 주소 명시.
+    - 보낸 주소와 받는 주소가 다르면 cors
+
+* referer
+    - 현재 페이지의 이전 주소.
+    - 어느 페이지를 통해 현재 페이지에 들어왔는지 알 수 있음.
+    - 통계 등에 사용.

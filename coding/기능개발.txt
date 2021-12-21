@@ -1,0 +1,12 @@
+# 기능개발
+
+진행도: progresses
+속도: speeds
+각 배포량: solution
+
+ - progresses와 speeds를 이용하여 '남은 개발 기간'을 도출.
+
+남은 개발 기간: periods
+
+ - period를 이용해 '각 배포량'을 도출.
+  1. 기간이 얼마나 남았는지 비교하여 '배포할 개수'를 하나씩 더한다.

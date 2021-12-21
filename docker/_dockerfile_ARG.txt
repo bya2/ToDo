@@ -1,0 +1,26 @@
+# ARG
+
+# Usage
+```
+ARG <name>[=<default value>]
+```
+
+`--build-arg <varname>=<value>` flag를 사용하여 `docker build` command로 빌드 타임에 빌더에게 전달할 수 있는 변수를 정의.
+
+build-time 변수를 암호를 전달하는데 사용하는 것은 지양.
+`docker history` command로 이미지의 모든 사용자에게 표시됌.
+따라서 "build images with BuildKit" section에 대해서 참조. (이미지를 빌드할 때 암호 사용에 대한 보안 방법을 알아보려면)
+
+# FROM 지시어와의 관계
+첫번째 FROM 이전에 변수로 선언.
+FROM 지시어를 제외한 다른 지시어에 사용 불가.
+
+
+첫번째 FROM 이전에 변수로 선언된 ARG는 FROM 지시어를 제외한 어떤 지시어에도 사용할 수 없다.
+첫 번째 FROM 이전에 선언된 ARG의 기본값을 빌드 단계 내에서 값이 없는 ARG 명령어를 사용하려면:
+```
+ARG VERSION=latest
+FROM busybox:$VERSION
+ARG VERSION
+RUN echo $VERSION > image_version
+```

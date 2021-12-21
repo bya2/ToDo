@@ -1,0 +1,42 @@
+이미지 목록 (docker images)
+컨테이너 목록 (docker ps) [-a]
+
+도커 파일로 이미지를 빌드. (docker build)
+컨테이너로서 이미지를 실행. (docker run) [-d] [-p local:container] [--name NAME]
+컨테이너 중지. (docker stop name|container id)
+컨테이너 재시작. (docker restart name|container id)
+컨테이너 제거. (docker rm name|container id ...)
+
+
+
+0. 디렉터리 이동, 패키지 설치
+
+1. Test the application
+ - curl --request POST --url http://localhost:8080/ --header 'content-type: application/json' --data '{"msg": "testing"}'
+
+ - create a Dockerfile
+ 	# syntax=docker/dockerfile:1 (on Linux)
+	FROM base_image
+	ENV NODE_ENV=production
+	WORKDIR /app
+	COPY ["package.json", "package-lock.json", "./"]
+	RUN npm install -production
+	COPY . .
+	CMD ["node", "server.js"]
+
+ - create a .dockerignore file
+
+ - Build image
+	docker build -t <tagname> path|url|text
+
+ - View local image
+	docker images
+
+ - add Tag
+	docker tag <image:tag> <image:addTag>
+
+ - remove Tag
+	docker rmi <image:addTag>
+
+ - verify image
+	docker images

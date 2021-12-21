@@ -1,0 +1,35 @@
+0930
+
+공통 헤더(General Header)
+
+date
+connection (-)
+cache-control
+content-length
+content-type
+content-language
+content-encoding
+
+
+* Date: HTTP가 생성된 시각. (자동 생성)
+
+* Connection: (사실상) 아무 의미 없음.
+
+* Cache-Control:
+
+* Content-Length: 요청, 응답 메세지의 본문 크기를 byte 단위로 표시. (자동 생성)
+
+* Content-Type:
+    - MIME(컨텐츠 타입) : ex) text/html, www-url-form-encoded, multipart/form-data
+    - 문자열 인코딩         : ex) utf-8
+    - Accept, Accept-Charset 헤더와 대응됌.
+
+* Content-Languge:
+    - 사용자의 언어
+    - 요청이나 응답이 무슨 언어인지와 관련 없음.
+    - 따라서 별 의미 없음.
+
+* Content-Encoding:
+    - 응답 컨텐츠의 압축된 방식.
+    - 응답 컨텐츠를 알고리즘(br, gzip, deflate, ...)으로 압축해서 보내면, 브라우저가 알아서 해체해서 사용함.
+    - 컨텐츠 용량이 줄어드므로, 요청이나 응답의 전송 속도가 빨라지고, 데이터 소모량이 줄어듬.

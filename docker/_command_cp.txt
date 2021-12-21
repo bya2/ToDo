@@ -1,0 +1,22 @@
+* Command
+
+# docker cp
+
+# Usage:
+```
+docker cp [options] container:src_path dest_path|-
+docker cp [options] src_path|- container:dest_path
+```
+
+# Options
+```
+--archive, -a	// Archive mode(Copy all uid/gid information)
+--follow-link, -L	// Always follow symbol link in SRC_PATH
+```
+
+# Description
+- `src_path`의 내용을 `dest_path`에 복사.
+- 컨테이너의 파일 시스템에서 로컬 시스템으로, 로컬 시스템에서 컨테이너의 파일 시스템으로 복사 가능.
+- `-`를 지정하면, 표준입력이나 표준출력에 대해서 tar 아카이브를 스트리밍 가능. (?)
+- 컨테이너 경로는 컨테이너의 `/(루트)` 디렉터리에 상대적임. 맨 처음의 /는 선택 사항.
+- 로컬 시스템의 경로는 `docker cp` 커맨드가 실행되는 작업 디렉터리에 상대적으로 해석됌.

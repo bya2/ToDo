@@ -1,0 +1,46 @@
+1015
+
+Redis - Publish & Subscribe (발행 및 구독)
+
+*명령: SUBSCRIBE, UNSUBSCRIBE, PUBLISH
+    - SUBSCRIBE <channel> [channel...]
+    - UNSUBSCRIBE [channel...]
+    - PUBLISH <channel> <value>
+
+비유:
+- 유튜브와 같은 사이트에서 내가 누군가의 영상을 구독했을 때, 새 영상이 올라오면 유튜브는 자동으로 구독자들에게 발행자의 업데이트 소식을 알려준다. 레드스로 이런 기능 구현이 가능하다.
+
+과정:
+- 구독자가 Subscribe 설정을 하면, 레디스는 구독자의 CLI를 블로킹
+- 발행자가 값을 입력하면, 구독자의 창에 메세지 출력.
+
+예:
+구독자1
+$ subscribe <key>
+
+구독자2
+$ subscribe <key>
+
+발행자
+$ publish <key> <value1>
+$ publish <key> <value2>
+$ publish <key> <value3>
+
+- publish 명령으로 key 값을 업데이트하면, 구독자 창에서 메세제가 자동으로 출력.
+- 구독자의 클라이언트에서 unsubscribe 명령을 사용하면, 클라이언트에서 구독 해제. (채널없이 명령 사용하면 모든 채널 연결 끊김, Redis cli에서는 ctrl+C로 끊기 가능(블로킹 중이라서).)
+
+출력:
+SUBSCRIBE 출력:
+1) "subscribe" 채널을 성공적으로 구독했음을 의미.
+2) "<channel>" 구독한 채널명
+3) (integer) n 구독 중인 채널 수
+
+UNSUBSCRIBE 출력:
+1) "unsubscribe" 채널을 성공적으로 구독 해제했음을 의미.
+2) "<channel>" 구독 해제한 채널명
+3) (integer) n 구독 중인 채널 수
+
+MESSAGE 출력:
+1) "message" 특정 메세지가 수신되었음을 의미.
+2) "<channel>" 구독한 채널명
+3) <message> 발행된 메세지

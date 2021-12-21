@@ -1,0 +1,21 @@
+1008
+
+Persist Data(데이터 유지)
+
+Volume:
+    *목적:
+    - 단순 데이터 저장에 유용. (도커에서 Host Location 선택)
+
+Bind mounts:
+    *목적:
+    - Host에서 정확한 마운트 지점을 제어. (Host Location 제어)
+    - 컨테이너들에 추가 데이터를 제공.
+    - 소스 코드를 컨테이너에 마운트하여,,, 코드 변경 확인하고 응답하고 즉시 변경 사항 확인 가능.
+
+    0. 'nodemon'은 파일 변경 사항을 보기 위한 좋은 tool.
+
+비교:
+    Host Location을 사용자가 선택하느냐의 여부.
+    마운트 예: my-volume:/usr/local/data	/path/to/data:/usr/local/data
+    컨테이너 내용물로 새 볼륨 채우기: Volume 가능.
+    볼륨 드라이버 지원: Volume 가능.

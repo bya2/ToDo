@@ -1,0 +1,75 @@
+AWS Lambda
+
+ 서버리스: 별도의 서버 인프라 없이 서비스 구축하는 아키텍처.
+ 
+ 외부 서비스에 사용하려면 'API Gateway 서비스' 이용.
+ API Gateway: 일종의 웹서버나 웹 프레임워크의 URL Route 역할을 수행.
+ Restful 방식의 Open API 호출 기능을 할 수 있는데.
+
+
+
+
+ Elastic IP: aws 고정 IP.
+
+
+
+0. AWS 계정, IAM 유저
+ 0-E: MFA? CloudTrail?
+
+1. 네트워크 구성
+ VPC, Subnets, Route Tables, Internet Gateways, 
+
+ *Route Tables
+ - Ip Address에 Routing 경로를 정의.
+ - Subnet에서 밖으로 나가는 Outbound traffic에 대한 Routing 경로를 설정.
+ - Public Subnet을 위한 Route Table, Private Subnet을 위한 Route Table.
+
+ *Internet Gateways
+ - VPC의 Instance와 Internet 간에 통신할 수 있게 해준다.
+
+
+2. NAT 서버 구축
+ Instance, Elastic IPs
+
+
+ *NAT 서버
+ - Private Subnet 내의 Web Server들이 외부로 통신을 하기 위해서 NAT 서버를 Public Subnet 안에 구축하여 외부로 통신.
+
+ *Instance
+
+ 1. AMI(Amazon Machine Image)
+ 2. Instance Type
+ 3. Configure Instance Details
+ 4. Storage
+ 5. Tags
+ 6. Security Group
+ = SSH: Source(Custom: 0.0.0.0/0), 
+ = All traffic: Source(Custom: VPC 대역대), 
+ = Custom UDP...: Port Range(1194), Source(Anywhere)
+ 7. Review
+ 8. Key-Pair
+ = Create a new key pair
+ = key pair name: vpcNameKey
+ 9. Elastic IPs
+ = Actions - Associate address
+ = Resource type: Instance
+ = ...
+ 10. Route Tables: NAT Instance 주소를 Private Subnet을 위한 Route에 연결.
+ = Destination: 0.0.0.0/0
+ = Target: Network interface ID
+
+3. Putty
+ OpenVPN?, 
+
+ a: OpenVPN 설치?
+ b: NAT Instance를 생성할 때 다운받은 .pem파일을 .ppk로 변환.(puttygen)
+ = PuttyGen
+ = Type of key to generate: SSH-1 (RSA)
+ = Load - .pem Open - Save private key
+ c: NAT Instance에 접속(Putty)
+ = Host Name: Elastic IP(NAT Instace)
+ = Connection - SSH - Auth - Browse.. - .ppk
+ = login as: ec2-user
+
+4. Web Server(Apache) 구축
+ Private Subnet 안에 Web Server 역할을 할 수 있는 Instance 구축.

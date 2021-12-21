@@ -1,0 +1,16 @@
+Node
+
+ 하나의 Process
+ Main event loop가 single thread 위에서 돌고 있고, I/O operation들은 별도의 다른 스레드에서 처리되는 구조.
+
+ Event loop는 event queue에 적재되어 있는 callback들을 main thread의 stack(call stack)이 모두 빌 때, 우선 순위에 맞게 처리
+
+
+
+ JS는 호출 스택을 가지고 있습니다.
+ 호출 스택은 '후입선출'의 구조로 작동하여 호출되는 함수의 실행을 관리합니다.
+ 호출된 함수는 Stack에 쌓이고, 실행될 때 Web APIs에 콜백 함수와 함께 전달되고, 거기서 이벤트 테이블을 통해 관리되다가 Queue로 넘어갑니다.
+
+ Callback Queue, Task Queue는 선입선출의 구조로 작동해서 적재되어있는 콜백들이 call stack이 모두 빌 때마다 이벤트 루프를 통해서 Call stack에 담고 작업합니다.
+ 
+ 

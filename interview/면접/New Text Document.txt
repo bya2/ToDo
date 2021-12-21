@@ -1,0 +1,18 @@
+cookie, session, urlencoding, middleware,
+
+
+payload, etag
+
+
+** HTTP ETag
+
+or entity tag
+
+
+HTTP가 Web cache의 유효성 검사를 위해 제공하는 여러 메커니즘 중 하나, (클라이언트는 조건부 요청을 할 수 있음.)
+
+이 메커니즘은 caches의 효율성을 높이고, 대역폭을 절약할 수 있도록 허용. (컨텐츠가 변경되지 않은 경우 웹 서버가 전체 응답을 보낼 필요가 없기 때문)
+
+ETags는 자원의 동시 업데이트가 서로 덮어씌우는 것을 방지하는 데 도움이 되는 Optimistic concurrency control에 사용.
+
+An ETag는 웹 서버로부터 URL에서 발견된 리소스의 특정 버전에 할당된 불투명한 식별자. (??? 이게 무슨 소리)

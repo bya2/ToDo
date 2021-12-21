@@ -1,0 +1,27 @@
+# 프린터
+
+문서의 중요도: priorities
+요청한 문서의 위치: location
+
+ - 접근 방법:
+  1. 집합, 각 숫자의 개수 등을 계산해서 접근.
+  2. 요청한 문서의 위치를 정렬.
+
+ 1.
+ - 
+
+평문 : Always do what you are afraid to do
+암호화 키 : secret is beautifuls ecreti sb ea
+
+Spyrcl lg wlan rwz ucw ehiebl lp ho
+
+평문 : Yo ua re ri gh tx
+암호화 키 : secret is beautiful
+
+s e c r t
+i b a u f
+l d g h j
+k m n o p
+q/z v w x y
+
+xp uf ct us hj yr

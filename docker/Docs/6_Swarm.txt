@@ -1,0 +1,25 @@
+1011
+
+Swarm (Orchestration)
+
+***'오케스트레이션'의 개발 환경 배포는 '도커 데스크톱'에 의해서 제공.
+
+
+0. 활성화 (Docker Swarm)
+
+***'도커 데스크톱'은 우선적으로 '도커 엔진'을 실행. '도커 엔진'은 구축된(내장된?) '스왐' 실행에 필요한 모든 것을 가지고 있음.
+
+0-2. Windows
+    - Docker Swarm Mode를 초기화. / docker swarm init [options]
+    - 도커 서비스 실행 및 8.8.8.8에 핑을 격리. / docker service create --name <container-name> <image:tag> ping 8.8.8.8
+    - 서비스가 하나의 실행 컨테이너로 생성됬는지 확인. docker service ps <container-name>
+    - 핑 프로세스에서 예상되는 로그를 얻었는지 확인. / docker service logs <conatiner-name>
+    - 테스트한 서비스를 해체(제거). / docker service rm <container-name>
+
+
+?. docker swarm init [options]
+    - 'Swarm'을 초기화.
+    - 이 커맨드의 대상이 되는 '도커 엔진'은 새로 생성된 '단일-노드 스왐'의 관리자.
+
+    
+

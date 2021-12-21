@@ -1,0 +1,48 @@
+1009, 1011
+
+컨테이너 네트워킹: 
+* 컨테이너 간 통신 방법.
+
+~ 컨테이너는 격리되어 실행.
+~ 동일한 컴퓨터의 다른 프로세스나 컨테이너에 대해서는 모르고 있음.
+
+- 즉, 동일한 네트워크에 있는 컨테이너들 간에 서로 통신 가능.
+
+컨테이너 네트워킹 작업:
+0. 도커 네트워크 생성
+1. 컨테이너 실행 커맨드에 <네트워크 플래그> 추가
+2. 컨테이너에 대한 로그 확인
+
+예제:
+0. 도커 네트워크 생성.
+docker network create todo-app
+
+1. 네트워크 플래그와 함께 MySQL 컨테이너 실행.
+docker run -d --network todo-app --nework-alias mysql -v todo-mysql-data:/var/lib/mysql -e ... mysql:5.7
+
+2. MySQL 컨테이너와 연결하여 Prompt
+docker exec -it <mysql-container-id> mysql -u root -p
+
+3. 네트워크 플래그와 함께 nicolaka/netshoot 이미지로 컨테이너 실행. (네트워크 문제를 해결하고 디버깅하는 툴)
+docker run -it --network todo-app nicolaka/netshoot
+dig mysql (dig <hostname>)
+(ANSWER SECTION 확인)
+
+4. 네트워크 플래그와 함께 애플리케이션 컨테이너 실행.
+docker run -d -p 3000:3000 `
+-w /app -v "$(pwd):/app" `
+--network todo-app `
+-e MYSQL_HOST=mysql `
+-e MYSQL_USER=root `
+-e MYSQL_PASSWORD=secret `
+-e MYSQL_DB=todos `
+node:12-alpine `
+sh -c "yarn install && yarn run dev"
+
+5. 컨테이너에 대한 로그 확인
+docker logs <container-id>
+
+6. 브라우저를 열고, 몇몇 아이템을 추가하여 mysql에서 확인
+Add items in browser.
+docker exec -it <mysql-container-id> mysql -p todos
+select * from todo_items;

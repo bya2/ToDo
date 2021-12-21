@@ -1,0 +1,122 @@
+1101
+
+- LABEL
+- HEALTHCHECK
+- RUN
+- COPY
+- ENTRYPOINT
+
+# Custom
+FROM <base-image>
+LABEL <key>=<value> <key>=<value> ...
+HEALCHECK [options] \
+  CMD <command>
+RUN
+ENV
+EXPOSE
+RUN
+USER
+WORKDIR
+ENTRYPOINT
+COPY --chown=<user>:<group> package.json package-lock.json /<dir>
+RUN 
+COPY . .
+
+
+
+
+# LABEL
+: 이미지에 대한 메타데이터 추가
+
+---
+LABEL <key>=<value> <key>=<value> <key>=<value>
+---
+
+: 키, 값에 빈 공간, 줄바꿈은 quotes, backslashes
+: 이미지에 대한 메타데이터를 보려면 `docker image inspect --format='' <image>`
+
+---ex)
+LABEL maintainer="byaa1972@gmail.com"
+---
+
+
+
+# HEALTHCHECK
+: 컨테이너가 잘 작동 중인지 확인하도록 테스트하는 방법을 도커에게 전달.
+
+---
+HEALTHCHECK [OPTIONS] CMD <command> // 컨테이너 내에서 커맨드 실행하여 헬스 체크
+or
+HEALTHCHECK NONE // 베이스 이미지로부터 상속받은 헬스체크 기능들을 비활성화.
+---
+
+---ex)
+HEALTHCHECK --interval=10s --timeout=3s \
+  CMD ./lib/utils/healthcheck.js
+---
+
+
+
+# RUN
+: 현재 이미지 위의 새 레이어에서 명령을 실행하고 결과를 커밋. 결과로서 커밋된 이미지는 Dockerfile의 다음 단계에서 사용됨.
+
+: RUN 명령을 레이어링하고 커밋을 생성하는 것은 도커 핵심 개념과 부합.
+: - CORE: 커밋이 저렴하고 이미지 기록의 어떤 지점에서라도 컨테이너를 생성하는 것. (소스 제어와 마찬가지)
+
+: exec 형태는 셸 문자열이 뭉개지지 않고 지정된 셸 실행 파일이 없는 기본 이미지를 사용하여 RUN 커맨드 실행.
+
+: 디폴트 셸은 SHELL 커맨드를 이용하여 변경.
+
+---
+RUN <command> // shell form
+or
+RUN ["executable", "param", "param" ...] // exec form
+---
+
+---ex)
+RUN apk add --no-cache --upgrade bash
+---
+
+: RUN 명령에서 cache는 다음 빌드 중 자동으로 무효화되지 않음. 다음 빌드 중 재사용됨.
+: 따라서 캐시는 `--no-cache` 옵션을 사용해서 무효화될 수 있음. (예: `docker build --no-cache`)
+
+
+
+# COPY
+: src에 해당하는 파일이나 디렉토리를 dest에 복사.
+
+---
+COPY [--chown=<user>:<group>] <src> ... <dest>
+or
+COPY [--chown=<user>:<group>] ["<src>", ... "<dest>"]
+---
+: 공백을 포함하는 경로는 후자의 형식.
+
+
+
+# ENTRYPOINT
+: 실행파일로 실행할 컨테이너를 구성할 수 있음.
+
+: 'docker run <image>'에 대한 명령줄 인수가 'exec 형태의 ENTERPOINT'안의 모든 요소 뒤에 추가되며 CMD를 사용하여 지정된 모든 요소를 재정의. (?) 이는 인수가 entry point에 전달될 수 있도록 함.
+
+: -shell form: 어떤 CMD나 run 명령줄 인수가 사용되는 것을 막음. 
+
+
+---
+ENTRYPOINT ["실행파일", "매개변수", "매개변수" ...] // exec form
+or
+ENTRYPOINT <command> <param> <param> ... // shell form
+---
+
+
+
+# Word
+
+on top of: -의 위에
+conform to: -에 부합하다, -에 따르다.
+munging: 뭉개다.
+executable: 실행 파일
+isn't invalidated: 무효화되지 않다.
+that will v: v할 -
+
+

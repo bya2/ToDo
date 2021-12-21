@@ -1,0 +1,49 @@
+1008, 1009, 1010, 1011
+
+docker run -d -p 80:80 docker/getting-started
+
+애플리케이션을 빌드
+    0. 해당 디렉터리에 `도커 파일` 작성. (+필요 컨테이너 이미지 다운로드)
+
+    1. docker build (애플리케이션을 빌드하여 컨테이너 이미지 생성) 
+
+    2. docker run (컨테이너 이미지로 컨테이너 실행)
+
+    3. 애플리케이션 업데이트 (소스 코드 변경)
+	- 빌드 및 런 -> 오류
+	- 이유: 기존 컨테이너를 제거하지 않으면, 호스트의 특정 포트를 사용하고 있기 때문.
+		(시스템의 한 프로세스만 특정 포트를 수신 가능)
+	- 해결: CLI 혹은 대쉬보드를 통해 컨테이너 중지 및 제거. 그 후, 컨테이너 실행. (docker stop, docker rm)
+
+    4. 애플리케이션 공유 (리포지토리: 도커 허브)
+	- Repo 생성.
+	- 푸쉬 -> 오류
+	- 이유: 해당 이미지의 태그 이름이 로컬에 없기 때문.
+	- 해결: 이미지에 태그 이름(username/image-name) 작성. (docker tag) 그 후, 이미지 푸쉬. (docker push)
+
+    5. 리포지토리의 이미지로 컨테이너 실행
+
+    6. (데이터 유지 목적) 볼륨 생성, 볼륨 플래그 추가, 데이터 저장 위치(docker volume create, -v <v-name>:<path>, docker volume inspect)
+
+    7. (데이터 유지 목적) 바인드 마운트 사용, 볼륨과 바인트 마운트 비교(#2_)
+
+    8. dev-mode 컨테이너 시작.(#3_)
+
+    9. (다중 컨테이너 애플리케이션 실행) 프로세스 관리자에 대한 이해, 네트워크 생성, 네트워크 플래그 추가(process manager, docker network create, --network <n-name>)
+
+    10. (다중 컨테이너 애플리케이션 정의와 공유를 위한 툴) 컴포즈 파일 생성, 애플리케이션 스택 정의, 애플리케이션 스택 실행, 애플리케이션 스택 해제, 로그 확인(docker-compose.yml, docker-compose up, docker-compose down, docker-compose logs)
+
+    11. (취약성 검색) 커맨드 라인으로 취약성 검색, 허브 취약성 검색(!결제 필요) (docker scan)
+
+    12. (이미지 계층화, 레이어 캐싱) 이미지 내 레이어 만드는 데 사용된 커맨드, 계층화에서 컨테이너 이미지 빌드 시간 줄이기 (docker image history, .dockerignore)
+
+*Attaching: often called 'mounting'.
+*볼륨: 컨테이너 내 디렉터리에 볼륨을 첨부(마운팅)함으로써, 데이터를 유지.
+
+# 3_
+    1. 소스 코드를 컨테이너에 마운트.
+    2. 종속성 설치. (dev 포함)
+    3. 파일 시스템 변화를 보기 위해 nodemon 시작
+    4. docker run -d -p 3000:3000 -w /app -v "$(pwd):/app" node:12-alpine sh -c "yarn install && yarn run dev"(shell)
+    (shell은 줄바꿈을 '\'로 하고, powershell은 '`'로 함)
+    5. docker logs -f <container-id>

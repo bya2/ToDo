@@ -1,0 +1,12 @@
+Spring JdbcTemplate
+
+ -순수 Jdbc와 동일한 환경설정.
+ -Spring JdbcTemplate, MyBatis 등은 JDBC API에서 본 반복적인 코드를 제거. 하지만 SQL 직접 작성.
+
+
+RowMapper
+
+ -원하는 형태의 결과값을 반환하기 위해 사용.
+
+ -mapRow 메소드는 ResultSet을 사용.
+  ResultSet에 값을 담아와서 User 객체에 저장. 그리고 그것을 count만큼 만복.

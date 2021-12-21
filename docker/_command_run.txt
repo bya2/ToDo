@@ -1,0 +1,20 @@
+*Run
+
+새로운 컨테이너에서 command 실행.
+
+*Usage
+$ docker run [options] image [command] [arg...]
+
+*Description
+ 1. '지정된 이미지' 위에서 '쓰기 가능한 컨테이너 계층' 생성.
+ 2. 지정된 command를 사용하여 이를 시작.
+
+ (docker run === '/containers/create' then '/containers/(id)/start')
+
+ 중지된 컨테이너는 이전의 모든 변경사항을 그대로 둔 채로 docker start를 통해서 재시작될 수 있음.
+
+ docker run은 컨테이너가 실행하는 command을 변경하는 docker commit과 함께 사용될 수 있음.
+
+ -컨테이너를 네트워크에 연결하는 자세한 정보: Docker network overview
+
+*Options

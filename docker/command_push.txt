@@ -1,0 +1,12 @@
+* [ command: Push ]
+
+1. docker login -u bya2, input password
+2. docker tag <image> <bya2/image>
+    - 도커 허브에 저장하기 위해 '소스 이미지'를 참조하는 '타겟 이미지'를 생성.
+    - 결과: REPOSITORY명이 변경됌.
+3. docker push bya2/image
+    - 도커 허브에 이미지 푸쉬
+    - 결과: 도커 허브에 해당 이미지가 등록됌.
+
+번외
+4. 

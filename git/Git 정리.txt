@@ -1,0 +1,118 @@
+# Git 정리
+
+## 이론
+
+ Git Repository 구조는 세 가지로 구성되어 있다.
+ 작업 폴더(Working directory) > 인덱스(Staging Area) > 저장소(Head-Repository)
+
+ 작업 폴더: 우리가 작업하는 폴더. 추가(Untracked) 및 변경(Modified)을 해서 인덱스에 기록(Stage)하고자하는 파일들로 구성.
+ 인덱스: commit을 실행하기 전, 가상의 준비 영역.
+ 저장소: 
+
+## Config
+source > git config --global user.name <username>
+source > git config --global.user.email byaa1972@gmail.com
+
+ Git에서 사용할 username과 email을 config에 설정한다.
+ git log를 통해 Author 영역에서 확인할 수 있다.
+
+source > git remote add <name> <url>
+source > git remote add origin <url>
+
+ 원격 저장소의 변수는 대부분 origin을 사용하므로 이 문서에서 모든 <name>은 origin으로 사용하도록 한다.
+ Git에서 url을 origin이라는 변수에 담고, 해당 git 폴더와 origin 변수에 해당하는 원격저장소를 연결한다.
+
+source > git remote [option]
+
+ 원격 저장소가 저장된 변수를 확인한다.
+ -v 옵션으로 변수와 연결된 원격 저장소를 확인한다.
+
+source > git branch <branch name>
+source > git checkout <branch name>
+or
+source > git checkout -b <branch name>
+
+ Git에서 local branch를 생성하고, 사용할 branch를 checkout해서 선택한다.
+ checkout의 b 옵션을 사용하면 branch를 생성과 동시에 선택할 수 있다.
+
+source > git branch [option]
+
+ Git에서 생성된 local 브랜치를 확인한다.
+ -r 옵션으로 remote 브랜치를 확인한다.
+ -a 옵션으로 모든 브랜치를 확인한다.
+
+source > git branch -M main
+
+ Git에 main 브랜치를 생성할 때 M 옵션을 사용한다.
+
+source > git branch -d <branch name>
+
+ 해당 local branch를 삭제한다.
+
+source > git push origin --delete <branch name>
+
+ 해당 remote branch를 삭제한다.
+
+source > git status [option]
+
+ Git 폴더 내 파일들의 상태를 확인한다.
+ Working directory(Untracked, modified), statging area의 현황을 파악할 수 있다.
+
+source > git add <file name>
+
+ Git 폴더에서 해당 파일을 staging area로 이동시킨다.
+ 정규식을 사용해서 해당되는 파일의 범위를 조정할 수 있다.
+
+source > git add *
+
+ Git 폴더의 모든 파일을 staging area로 이동시킨다.
+
+source > git add .
+
+ .gitignore 파일의 내용에 해당하는 파일을 제외하고 모든 파일을 staging area로 이동시킨다.
+
+source > git rm --cached <file name>
+
+ staging area에 있는 파일을 untracked files로 변환한다.
+
+source > git commit -m "<comment>"
+
+ staging area에 있는 모든 파일을 commit한다.
+
+source > git commit -a
+
+ add(statging) 절차를 생략하고, commit한다.
+
+source > git log
+
+ commit hitory를 확인한다.
+
+source > git push origin <branch name>
+
+ 원격 저장소의 해당 브랜치에 commit된 내용을 push한다.
+ 해당 브랜치가 원격 저장소에 없으면, 브랜치를 생성한다.
+
+source > git clone <url>
+
+ 원격 저장소의 이름과 내용을 복사한다.
+
+source > git pull origin <branch name>
+
+ 원격 저장소의 해당 브랜치의 내용을 git 폴더에 pull한다.
+
+
+
+
+## Problem
+source > fatal: remote origin already exists.
+source > git remote rm origin
+source > git remote origin add <url>
+
+ origin을 삭제하고, url을 origin 변수에 담아 remote한다.
+
+source > git branch -d <branch name>
+source > error: The branch 'branch' is not fully merged.
+source > git branch -D <branch name>
+
+ -d 옵션으로 local branch를 삭제할 수 없을 경우,
+ -D 옵션으로 병합 상태와 관계없이 강제로 삭제한다.

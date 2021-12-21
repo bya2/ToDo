@@ -1,0 +1,92 @@
+ # Federated Identity란?
+
+로그인 방식: Federated Identity
+그 기반: OAuth라는 기술이 연관되어 있다.
+
+Resource owner, Resource server, Client
+
+Resource owner: User
+My Service: Client
+Resource server: Google, Facebook ...
+
+Resource owner을 통해 Resource server의 access token을 OAuth를 통해서 Client가 전달받게 되면,
+
+Client는 access token을 통해서 Resource owner을 대신해서 Resource server에 접속할 수 있게 된다.
+
+그 때 access token을 가지고 Resource server에게 resource server 상에서 resource owner의 식별자가 무엇이냐고 묻는다. 그러면 access token을 보고 Resource server는 resource owner의 식별자가 '무엇'이다라고 api를 통해서 응답할 것이다. [이 사람의 id는 '무엇'이다]
+
+그러면 Client는 식별자를 통해서 지금 접속해있는 사용자가 누구인지 추적할 수 있다.
+
+Resource server 상에서 Resource owner의 아이디 값을 이용하게 되는 것이다.
+
+
+
+# 1.
+
+ 
+Consent screen: Resource owner가 Resource server에 어떤 권한을 요청할 때 사용되는 화면.
+
+Content screen을 통해 Resource owner가 권한을 승인하면, Resource server에게 신호가 간다.
+Resource server는 최종적인 인증을 하기 위해 authorization code를 만든다.
+이 Authorization code를 Owner을 통해 Client에 전송한다.
+
+이 때 Client가 Authorization code의 값을 받을 주소를 정하는 것이 Authorized Redirect URLs이다.
+http://localhost:3000/auth/google/callback
+
+clinetID: 828545282781-026nq5sorcpfta52d55cu859nbffn1b3.apps.googleusercontent.com
+clientSecret: BgwnqYZjgnmXE5qc0VXnARJv
+
+# 2.
+
+패스포트 전략.
+json파일 다운받기
+
+# 3.
+어떤 기능들을 제공하기 위해서는 어떤 리스소 서버 상에서의 기능이 필요하다는 것을 결정해야한다.
+이것을 scope라고 하낟.
+
+routes
+owner가 server로 인증을 하러 갈 때 필요한 주소를 만들어 주는 코드
+
+scope: Client가 Resource owner에게 요청할 Resource server에서의 기능들.
+	구글 로그인 외 다른 기능들을 사용: 캘린더 등...
+
+
+# 5.
+
+Resource server에게 인증을 받을 때 로그인이 안되어있으면, 로그인을 먼저시켜야한다.
+로그인 정보를 보내서 이 사람이 맞다!라고 인증이되면 resource server가 물어본다. scope에 대해서.
+b와 c의 권한을 클라이언트에게 승인할 것인가? 라고 물어본다.
+
+이제 resource owner가 allow를 눌렀을 때 Resource server는 밑의 정보를 기록한다.
+
+[ resource owner가 user_id:1 이었다면, client_id:1에게 scope: b와 c를 허용했다고 기록. ]
+[ 이후, resource server가 authorization code라고 하는 임시 비밀번호를 만든 후, owner에게 보낸다. ]
+[ header 태그에 location값을 준다. (redirection) code를 담아서. ]
+[ 이러면 location값이 redirection이므로, 자기도 모르게 client에게 다시 접속하게 된다. ]
+[ 이러면 client에게 code가 전달되고, client는 이를 기록한다. ]
+
+이제 API를 활성화해야한다.
+
+
+client는 resource server에 접속해서 clientID, clientSecret, authorization Code를 직접 전달.
+이를 passport가 개발자를 대신해서 자동으로 전달해줌.
+
+resource server는 이 값을 받고 authorization code를 지우고, accessToken를 발행한다.
+그리고 client에게 전송한다.
+
+accessToken은 user_id:1은 scope:b, c에 대해서 client_id:1에게 허용했다는 의미를 담고 있는 토큰이다.
+
+client는 google plus api를 통해서 accessToken을 이용해서 이 리소스 서버의 프로필 작업, resource server 상에서 id와 같은 정보들을 요청하고 그것을 응답받은 다음에
+
+그 결과를 전략의 callback 함수를  통해서 전달한 것이다.
+
+
+##
+
+ Facebook으로 로그인을 하든, Google으로 로그인 하든 간에 같은 사용자로 인식하도록 한다.
+ 기능 상 더 좋은 방법이라고 생각한다.
+
+ 많은 SNS들은 기본적으로 email을 주지 않는다.
+ email을 받기 위해서는 추가적인 scope을 언급할 필요가 있다.
+

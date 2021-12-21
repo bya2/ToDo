@@ -1,0 +1,190 @@
+1012, 1013, 1014
+
+---
+스웜 생성
+
+리눅스 머신에서 도커 엔진 설치: https://docs.docker.com/engine/install/
+
+*매니저 노드 실행: 매니저 노드를 실행할 머신(시스템)의 터미널에 SSH 입력. SSH를 통해 도커 머신에 연결할 수 있음.
+$ docker-machine ssh <MACHINE-NAME>
+
+*매니저 노드와 함께 새로운 스웜 생성: Mac이나 Windows에서 테스트용 단일 노드 스웜을 사용하려면 첫 번째 커맨드 입력.
+$ docker swarm init
+$ docker swarm init --advertise-addr <MANAGER-IP> ex) 192.168.99.100
+*--advertise-addr FLAG: 매니저 노드가 주소를 <MANAGER-IP>로 퍼블리시하도록 구성. 다른 노드들은 IP주소로 매니저에 액세스 가능.
+*--token FLAG: 이 플래그의 값에 따라 매니저나 워커로서 참여.
+
+*스웜의 현재 상태: $ docker info
+*노드들에 대한 정보: $ docker node ls // ID 다음 *는 현재 이 노드에 연결되었다는 것을 지칭.
+
+---
+스웜에 노드 추가
+
+*스웜에 '노드'들을 추가: 워커 노드를 실행한 머신(시스템)의 터미널에 SSH 입력.
+
+*매니저 노드에서 '조인'용 '토큰' 발급:
+$ docker swarm join-token manager
+
+*매니저 노드에서 워커에 대한 '조인'용 '토큰' 검색(커맨드):
+$ docker swarm join-token worker 
+
+*워커 노드가 현존하는 스웜에 조인:
+$ docker swarm join --token <token> <ip>
+
+*매니저 노드 시스템(머신)의 SSH에서 노드 목록 검색:
+$ docker node ls
+
+---
+서비스 배포
+
+*스웜에서 '서비스' 배포(등록):
+$ docker service create [options] <image> [command]
+*FLAG --name: 서비스 이름.
+*FLAG --replicas: 실행중인 인스턴스의 수를 원하는 상태로 지정.
+*FLAG --publish: 
+
+*실행 중인 서비스 목록 검색:
+$ docker service ls
+
+---
+서비스 검사
+
+*스웜에서 실행 중인 서비스에 대한 자세한 정보:
+$ docker service inspect --pretty <service-id>
+
+*서비스를 실행 중인 노드 검색:
+$ docker service ps <service-name>
+
+*'Task'이 실행 중인 노드 검색: Task에서 컨테이너에 대한 자세한 정보.
+$ docker ps
+
+---
+스웜 내 서비스 확장
+
+*서비스 내 컨테이너 수 확장: 서비스의 '원하는 상태' 변경.
+***서비스 내에서 실행 중인 컨테이너는 'Task'라고 불림. (서비스의 인스턴스라고도 함)
+$ docker service scale <service-name>=<number-of-tasks>
+
+*스웜은 실행되는 인스턴스(Task)의 수를 확장하기 위해 새로운 Task들을 생성. (스웜 매니저가 다른 노드에 태스크를 어떻게 할당했는지 확인)
+*이를 확인:
+$ docker service ps <service-name>
+***Task는 스웜의 여러 노드로 분배되고, 하나는 매니저 노드에서 실행됨.
+
+---
+스웜 내 실행 중인 서비스 제거
+
+*스웜 내 서비스 제거:
+$ docker service rm <service-name>
+
+*서비스 검사(inspect)를 해도 서비스를 찾을 수 없다는 것을 알 수 있음.
+***서비스가 더 이상 존재하지 않아도, Task를 정리하는 데 수 초정도 걸림.
+
+---
+서비스에 롤링 업데이트 적용.
+
+ex)
+$ docker service create --replicas 3 --name redis --update-delay 10s redis:3.0.6
+*서비스 배포 시 롤링 업데이트 설정.
+*FLAG --update-delay: Task와 Task 집합에 대한 업데이트 사이의 시간 지연 설정.
+
+*기본적으로 스케쥴러는 한 번에 하나의 태스크를 업데이트.
+*스케쥴러가 동시에 업데이트할 Task의 최대 수 설정:
+*FLAG --update-parallelism
+$ docker service create ... --update-parallelism <number> ...
+
+*기본적으로 개별 Task에 대한 업데이트가 `RUNNING` 상태라고 반환하면, 스케쥴러는 모든 Task가 업데이트될 때까지 업데이트할 다른 Task을 예약. (업데이트할 다른 Task를 찾는 걸 반복한다는 의미)
+*업데이트 중 작업이 `FAILED`를 반환하면, 스케쥴러는 업데이트를 중지. 플래그를 사용하여 동작을 제어할 수 있음.
+*FLAG: --update-failure-action
+ex)
+docker service create, docker service update
+
+*컨테이너 이미지 업데이트:
+$ docker service update --image <image:tag> <service-name>
+
+*스케쥴러 동작:
+1. Task 중지.
+2. 중지된 Task에 대해 업데이트.
+3. 업데이트된 Task에대한 컨테이너 시작.
+4-1. Task에 대한 업데이트가 `RUNNING` 반환: 지정된 지연 시간동안 대기 후 다음 Task 시작.
+4-2. Task가 `FAILED` 반환: 업데이트 중지.
+
+*서비스 상태 보기:
+$ docker service inspect --pretty <service-name>
+
+*실패로 인해 업데이트가 중지되었다면 상태에 표시가 됌. 커맨드로 업데이트 다시 실행.
+$ docker service update <service-name>
+
+---
+스웜에서 노드 제거
+
+*모든 노드는 `ACTIVE` 가용성으로 실행되고 있고, 스웜 매니저는 어떤 `ACTIVE` 노드에도 Task를 할당할 수 있음.
+
+*계획된 유지 관리 시간과 같이 노드를 `DRAIN` 가용성으로 설정해야하는 경우도 있음.
+*`DRAIN` 가용성은 노드가 스웜 매니저로부터 새로운 Task를 받는 것을 방지.
+*이는 매니저가 노드에서 실행 중인 Task를 중지하고, `ACTIVE` 가용성인 노드에서 복제 Task를 시작한다는 것을 의미.
+
+*! 노드를 `DRAIN`으로 설정하는 게 노드로부터 독립형 컨테이너를 제거하는 것은 아님.
+*! `DRAIN`과 같은 '노드의 상태'는 스웜 서비스 워크로드를 예약하는 노드의 기능에만 영향을 미침.
+
+ex)
+*서비스를 실행하고, 스웜 매니저가 다른 노드에 할당한 태스크 확인.
+*태스크가 할당된 노드를 `DRAIN` 가용성으로 설정
+$ docker node update --availability drain <node-hostname>
+
+***`DRAIN` 가용성이 있는 노드에서 Task를 종료하고, `ACTIVE` 가용성이 있는 노드에서 새로운 Task를 생성함으로써 `DESIRED STATUS`를 유지함.
+
+- 해당 노드를 검사해보면, Availability이 Drain으로 설정됌.
+- `docker service ps`에서 `DESIRED STATUS`가 Shutdown되는 것을 확인 가능.
+
+*`DRAIN` 상태가 된 노드를 `ACTIVE` 상태로 반환
+$ docker node update --availability active <node-hostname>
+
+---
+스웜 모드 라우팅 망 사용
+
+*'도커 엔진' 스웜 모드를 사용하면, 서비스용 포트를 퍼블리시하여, 스웜 외부의 리소스들이 스웜을 이용할 수 있도록 할 수 있음.
+*모든 노드는 'Ingress' 라우팅 망에 참여.
+*라우팅 망은 스웜의 각 노드가 스웜 내에서 실행 중인 어떤 서비스에 대해 퍼블리시된 포트의 연결을 허용하도록 활성화.
+
+*스웜 내 `Ingress` 네트워크를 사용하려면, 스웜 모드를 활성화하기 전에 스웜 노드 간 '어떤 포트'를 개방해야함.
+*7946: 컨테이너 네트워크 검색을 위한 TCP/UDP (검색?)
+*4789: 컨테이너 Ingress 네트워크를 위한 UDP (수신?)
+*외부 리소스(포트에 접근을 필요로하는 '로드 밸런서'오 같은)도  퍼블리시된 포트 개방을 필요로 함.
+*어떤 지정된 서비스에 대해서 라우팅 망을 우회할 수 있음.
+
+*서비스를 생성할 때 포트 퍼블리시:
+*FLAG --publish published=<published-PORT>,target=<container-PORT>
+$ docker service create ... --publish published=8080,target=80 ...
+
+*현존하는 서비스에 포트 퍼블리시:
+*FLAG --publish-add published=<published-PORT>,target=<container-PORT>
+$ docker service update ... --publish published=8080,target=80 ... <service>
+
+*라우팅: 어떤 노드에서라도 포트(published)에 접근하면, 도커는 요청을 활성 컨테이너로 라우트.
+*스웜 노드 자체에서 포트(published)는 실제로 바운드되지 않음.
+*라우팅 망은 트래픽을 라우트하는 방법을 알고 있으므로, 포트 충돌이 일어나는 것을 방지.
+
+*1. 라우팅 망은 포트(published)에서 노드에 할당된 IP주소를 수신.
+*2. 외부에서 라우팅할 수 있는 IP주소의 경우, 호스트 외부에서 포트를 사용할 수 있음.
+*3. 다른 모든 IP주소의 경우, 호스트 내에서만 접근 가능.
+
+*오직 TCP에서 포트 퍼블리시: 디폴트로 포트를 퍼블리시하면 TCP. 프로토콜 지정자를 생략하면 TCP.
+$ --publish published=53,target=53
+$ -p 53:53
+
+*오직 UDP에서 포트 퍼블리시: shorter syntax, longer syntax 둘 다 아래 필기.
+$ --publish published=53,target=53,protocol=udp
+$ -p 53:53/udp
+
+*TCP와 UDP 포트 함께 퍼블리시:
+$ --publish published=53,target=53 --publish published=53,target=53,protocol=udp
+$ -p 53:53 -p 53:53/udp
+
+*라우팅 망 우회: 라우팅 망을 우회하여 지정된 노드에서 바운드 포트에 접근할 때, 해당 노드에서 실행 중인 서비스의 인스턴스(Task)에 접근할 것임. 이를 '호스트 모드'라고 함.
+
+- 다음은 호스트 모드에서 유의해야할 사항임.
+*1. Task를 실행하고 있지 않은 노드에 접근하면, 서비스가 해당 포트에서  수신하지 않음. 아무것도 수신하고 있지 않거나, 완전히 다른 애플리케이션이 수신하고 있을 수 있음.
+*2. 각 노드에서 여러 개의 Task를 실행해야하면, 정적 포트 대상을 지정할 수 없음. 도커가 임의의 포트를 할당하거나 지정된 노드에 '글로벌 서비스'를 사용하여 오직 하나의 Task를 실행하도록 보장해야함.
+
+*라우팅 망 우회: long syntax를 사용해야함.
+$ --publish published=53,target=53,protocol=udp,mode=host --mode global

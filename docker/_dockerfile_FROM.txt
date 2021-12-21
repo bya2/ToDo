@@ -1,0 +1,45 @@
+# FROM
+
+# Usage
+```
+FROM [--platform=<platform>] <image>[:<tag>] [AS <name>]
+```
+OR
+```
+FROM [--platform=<platform>] <image>[@<digest>] [AS <name>]
+```
+
+새 빌드 스테이지 초기화,
+이후 '지시어'에 대한 베이스 이미지 생성
+
+1. ARG와 FROM에 대한 관계:
+
+2. 단일 도커파일 내에서 여러 번 나타날 수 있음.
+    - 이는 여러 개의 이미지를 생성하고, 다른 빌드 단계에 종속성으로서 사용하기 위해서임.
+
+3. 선택적으로, As name을 뒤에 추가해서 새 빌드 단계에 alias를 지정할 수 있음.
+    - 이후 FROM이나 COPY --from=<name> 지시어에 사용 가능.
+
+4. tag, digest 값은 선택적이다. 생략하면, 빌더는 최신 태그로 추정한다. 태그 값을 찾지 못하면 빌더는 에러 반환.
+
+FROM이 다중 플랫폼 이미지를 참조하는 경우, '--platform' flag는 이미지의 플랫폼을 지정하는데 사용.
+*다중 플랫폼 이미지(예: linux/amd64, linux/arm64, or windows/amd64).
+기본적으로 빌드 요청의 목표 플랫폼으로 사용됌.
+전체 빌드 매개변수는 --platfrom의 값으로 사용됌.
+
+# ARG
+
+첫번째 FROM 이전에 변수로 선언.
+FROM 지시어를 제외한 다른 지시어에 사용 불가.
+
+
+첫번째 FROM 이전에 변수로 선언된 ARG는 FROM 지시어를 제외한 어떤 지시어에도 사용할 수 없다.
+첫 번째 FROM 이전에 선언된 ARG의 기본값을 빌드 단계 내에서 값이 없는 ARG 명령어를 사용하려면:
+```
+ARG VERSION=latest
+FROM busybox:$VERSION
+ARG VERSION
+RUN echo $VERSION > image_version
+```
+
+

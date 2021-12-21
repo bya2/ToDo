@@ -1,0 +1,30 @@
+서비스: repository domain 비즈니스 로직
+
+
+
+object.ifPresent(lambda); //값이 있는지 확인
+
+
+m -> {
+	throw new IllegalStateException("message");
+}
+
+join method:
+  이름을 받아와서 중복되는 이름이 있는지 확인한다. // 중복회원검증 메서드 만들기.
+  멤버 객체를 저장소에 저장한다.
+  멤버 객체의 아이디를 반환한다.
+
+orElseGet() 값이 있으면 꺼내고 값이 없으면 어떤 메서드를 실행
+
+ctrl+T - Extract Method - command option m
+
+
+findMembers() method: 전체 회원 조회.
+  저장소.findAll(); 반환.
+
+
+assertThrows(Excetpion.class 발생해야하고, 람다가 넘어감)
+
+
+ctrl + V
+  

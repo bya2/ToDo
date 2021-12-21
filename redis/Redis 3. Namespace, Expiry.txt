@@ -1,0 +1,54 @@
+1015
+
+Namespace, Expiry
+
+---
+=Namespace
+
+- Redis's Namespace = Database
+- (설명) PostgreSQL이 하나의 클러스터 안에 여러 개의 데이터베이스를 생성하여 용도를 나눠 사용할 수 있듯이, Redis는 네임스페이스를 나눠 데이터베이스를 구분함.
+
+- Namespace는 숫자로 구분. (0은 디폴트)
+- Prompt 끝에 현재 네임스페이스가 나옴
+
+*네임스페이스 선택:
+$ SELECT <namespace>
+
+*키 값을 다른 네임스페이스로 이동: (하나의 Redis 서버에서 동시에 다른 여러 애플리케이션을 실행할 때 유용)
+$ MOVE <key> <namespace>
+
+---
+=Expiry
+
+- Redis는 빠른 액세스가 필요한 데이터 캐시에 많이 이용.
+- 따라서 특정시간이 경과되면 EXPIRY가 된 키-값 데이터를 자동으로 삭제하여 전체 Key Set이 무한히 커지는 걸 방지.
+- (200GB가 넘어가면 장애 발생할 수 있음.)
+
+*특정 키 값에 생존시간 지정: (상대적)
+$ expire <key> <seconds>
+
+*특정 키 값에 만료시각 지정: (절대적)
+$ expireat <key> <time>
+
+*키 설정(SET)과 EXPIRY 설정(EXPIRE) 한 번에 설정:
+$ setex <key> <seconds> <value>
+
+*특정 키 값이 존재하는지 확인: (1:true, 0:false)
+$ exists <key>
+
+*특정 키 값의 생존시간 확인:
+$ ttl <key>
+
+*특정 키-값 데이터가 만기되기 전 타임아웃 해제:
+$ persist <key>
+
+- 가장 최근에 사용된 Key들만 유지하는 좋은 방법은 값을 읽을 때마다 Expiry 시간을 변경하는 것
+- Redis의 MRU(Most Recently Used) 캐싱 알고리즘이 이 것에 해당
+
+그 밖에 명령어
+*RENAME: 키의 이름 변경
+*TYPE: 키의 타입 판단
+*DEL: 키 값 삭제
+*FLUSHDB: 현재 네임스페이스의 모든 키 삭제
+*FLUSHALL: 현재 Redis 안의 모든 키 삭제
+

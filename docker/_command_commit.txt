@@ -1,0 +1,30 @@
+#Usage
+docker commit [options] container [repository[:tag]]
+
+#Description
+컨테이너의 변경사항을 사용해서 새로운 이미지 생성.
+
+대화형 셸을 실행하여 컨테이너 디버그,
+다른 서버로 작업 데이터 집합을 내보내기,
+
+도커 파일을 사용하는 데에는, '이미지'를 문서화되고, 유지 관리할 수 있는 방식으로 관리하는 것이 더 좋음.
+
+커밋 작업에는 컨테이너 내부에 마운트된 볼륨에 포함된 데이터가 포함되지 않음.
+
+이미지가 커밋되는 동안, 컨테이너와 해당 프로세스는 중지됌.
+(이는 데이터 충돌 가능성을 줄임.)
+(그러나, 이를 원하지 않는다면 --pause option을 false로 변경.)
+
+--change option: 생성된 이미지에 도커 파일 지시 사항을 적용.
+
+#Options
+--author (-a)
+--change (-c)
+--message (-m)
+--pause (-p, default: true)
+
+docker commit `
+-a <author>`
+-c 
+
+

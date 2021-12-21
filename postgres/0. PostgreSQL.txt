@@ -1,0 +1,23 @@
+1018
+
+PostgreSQL: Postgres를 기반으로하는 ORDBMS. (*ORDBMS: 개체-관계 데이터베이스 관리 시스템)
+
+데이터베이스 구조
+ = 물리적 구조: Shared Memory, 적은 수의 백그라운드 프로세스, 데이터 파일로 구성.
+
+ = Shared Memory: Shared Buffer, WAL Buffer
+
+ - Shared Buffer: 목적은 '디스크 입출력 최소화'.
+ > 1. 매우 큰 버퍼를 빠르게 액세스해야함. (수백 GB 단위)
+ > 2. 많은 사용자가 동시에 접근할 때 경합을 최소화해야함.
+ > 3. 자주 사용되는 블록은 최대한 오랫동안 버퍼 내에 있어야함.
+
+ - WAL Buffer: 목적은 '데이터베이스의 변경사항을 임시로 저장'.
+ > 1. WAL 버퍼 내 저장된 내용은 '정해진 시점'에서 WAL파일로 기록됨. (백업 및 복구 관점에서 매우 중요. `=.Oracle Redo)
+
+ = 프로세스 유형: Postmaster(Daemon), Background, Backend, Client
+
+ - Postmaster 프로세스
+ > 1. 구동할 때 시작되는 프로세스.
+ > 2. 초기 기동 시, 복구 작업, Shared Memory 초기화 작업, 백그라운드 프로세스 구동 작업 등을 수행.
+ > 3. Client 프로세스의 접속 요청이 있으면, Backend 프로세스를 생성.

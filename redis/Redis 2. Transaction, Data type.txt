@@ -1,0 +1,138 @@
+1015
+
+---
+SET과 GET
+
+(redis) $ set key value
+(redis) $ get key
+(redis) $ mget key1 key2 key3 ...
+
+- mget은 여러 쌍의 key-value를 불러와 네트워크 트래픽을 줄일 수 있음. 불러온 값을 정렬 리스트로 반환.
+
+---
+숫자 연산
+
+- Redis는 모든 값을 문자열로 저장함.
+
+(redis) $ set key 1
+(redis) $ incr key
+(redis) $ get key
+ "2"
+
+*incr: 숫자 값이 1을 증가
+*decr: 숫자 값에 1을 감소
+*incrby: 지정한 정수를 더하기
+*decrby: 지정한 정수를 빼기
+
+---
+트랜잭션(Transaction)
+
+*multi: 여러 명령을 하나의 블록으로 묶어두고 queue에 쌓기
+*exec: queue 실행
+*discard: queue 중지(트랜잭션 취소)
+
+---
+데이터 타입
+
+- List, Hash, Set, Sort set
+- Redis의 데이터 타입들은 키 하나당 2^23개 혹은 40억 개 이상의 값을 가질 수 있음.
+
+- Set(S-), Hash(H-), Sort set(Z-)
+- List(연산 방향에 따라 L-, -R)
+
+Hash: 논리적으로 키 필드 구분. 키 필드를 나타날 때는 콜론(:)을 사용.
+$ HMSET user:cat name "ok man" password 1234
+$ HVALS user:cat (모든 해시키 읽기)
+$ HGET user:cat password
+
+- Document 타입 DB인 MongoDB와는 다르게 Redis의 Hash는 중첩될 수 없음. List 타입에서도 중첩 불가능. Hash 값으로 다른 Hash에 저장하는 것도 불가능.
+
+*HDEL: Hash 필드 삭제
+*HINCRBY: 정수 필드의 값을 주어진 값만큼 증가
+*HLEN: Hash 필드 개수 조회
+
+List: *여러 개의 순서 값들. Queue(FIFO), Stack(LIFO) 둘 모두로 동작 가능. 인덱스 0기준. 마이너스 인덱스 사용 가능.
+$ RPUSH lion:wishlist gog fb nav (마지막 인덱스에 값 추가)
+$ LLEN lion:wishlist (리스트 크기)
+$ LRANGE lion:wishlist 0 -1 (인덱스 지정하여 리스트의 부분 값들)
+$ LREM lion.wishlist 0 nav (키와 일치하는 값을 삭제. 양수를 주면 왼쪽부터 개수만큼, 음수를 주면 오른쪽부터 개수만큼, 0을 주면 일치하는 모든 값을 삭제) 
+$ LPOP lion.wishlist (리스트 맨 왼쪽 값 반환)
+
+$RPOPLPUSH lion:wishlist lion:basket (wishlist 맨 오른쪽 값 반환 후 basket 맨 왼쪽에 값 추가) 조합된 명령어는 이것만 있음. Redis를 지원하는 프로그래밍 언어에서 멀티블록을 엮어 실행하기.
+
+Blocking List: 
+
+*BRPOP: 키를 통해 호출할 값이 생성되기 전까지 Blocking을 하는 명령어. 값을 호출하기 위한 키와 타임아웃 시간(초)가 필요.
+$ BRPOP <key> <seconds>
+
+ex)
+(1) $ BRPOP stock 300
+(2) $ LPUSH stock "50EA warehousing"
+(1) 결과: (2)에서 입력한 메세지와 블록킹된 시간 출력.
+
+SET: 중복된 값이 없고, 정렬되지 않은 데이터 집합.
+
+용도: 두 개 이상의 키 값들 간에 Union이나 Interaction 같은 연산을 수행할 때 필요.
+
+*SADD: SET 생성
+$ SADD <set-name> <value1> <value2> ...
+
+*SMEMBERS: 해당 SET의 값들.
+$ SMEMBERS <set-name>
+
+*SINTER: SET들 간의 교집합.
+$ SINTER <set-name1> <set-name2> ...
+
+*SDIFF: 차집합.
+*SUNION: 합집합.
+
+*SUNIONSTORE: 합집합의 결과 값을 새로운 SET으로 저장.
+$ sunionstore <target-name> <set-name1> <set-name2> ...
+
+*SINTERSTORE: 교집합의 결과 값을 새로운 SET으로 저장.
+*SDIFFSTORE: 차집합의 결과 값을 새로운 SET으로 저장.
+
+*SMOVE : 한 Set의 값들을 다른 Set으로 이동
+*SCARD : Set의 값 개수를 카운트
+*SPOP : Set에서 무작위로 값을 호출
+*SREM : Set에서 값을 삭제
+
+=Sort SET(Z-):
+
+- List처럼 정렬, Set처럼 고유한 값, Hash처럼 키값 데이터, 그러나 문자열 대신 값의 순서를 나타내는 지수(score) 사용.
+- 무작위로 액세스하는 우선순위 큐(priority queue)와 비슷함.
+- 내부적으로 정렬된 값을 유지하므로, 데이터를 추가할 때 log(N)의 시간복잡도를 가짐. (N=SET 크기)
+
+예:
+$ ZADD <redis key> <score1> <key1> <score2> <key2> ... (Sort SET 생성)
+
+$ ZINCRBY <redis key> <score1> <key1> <score2> <key2> ... (점수 추가)
+
+$ ZRANGE <redis key> <s-idx> <e-idx> (인덱스 범위 출력)
+
+$ ZREVRANGE <redis key> <s-idx> <e-idx> withscores (인덱스 범위 역순으로 출력)
+
+*ZRANGEBYSCORE : 조건에 맞는 값만 호출. 범위 값으로 양수, 음수, 무한대 모두 줄수 있음
+$ zrangebyscore <redis-key> <s-range> <e-range>
+
+*ZREVRANGEBYSCORE : ZRANGEBYSCORE의 역순으로 출력.
+*ZREMRANGEBYRANK : rank 별로 값을 삭제.
+*ZREMRANGBYSCORE : 지수별로 값을 삭제.
+
+
+집합의 연산:
+
+$ zadd <redis-key2> <value1> <key1> ...
+
+*ZUNIONSTORE: 합집합을 포함하는 키를 생성.
+$ zunionstore <target-redis-key> <number> <redis-key1> <redis-key2> [weights 2 1 aggregate SUM]
+*ZINTERSTORE: 교집합을 포함하는 키를 생성.
+
+
+
+
+
+
+
+
+

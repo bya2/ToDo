@@ -1,0 +1,19 @@
+* Command
+
+# docker build
+
+# Usage
+```
+docker build [options] path | url | -
+```
+
+# Options
+```
+--tag, -t		'name[:tag]' 형식의 이름 및 태그.
+```
+
+# Descriptions
+- 도커 파일이나 컨텍스트에서 도커 이미지 빌드.
+- 빌드 컨텍스트는 지정된 `path`나 `url`에 위치한 파일의 집합.
+- 빌드 프로세스는 컨텍스트 내 어떤 파일이든 참조. (예를들어, copy 명령을 사용해서 컨텍스트 내 파일을 참조)
+- `url`은 깃 리포지토리,미리 패키지된 tarball 컨텍스트, 일반 텍스트 파일을 참조.

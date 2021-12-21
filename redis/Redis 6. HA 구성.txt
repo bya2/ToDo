@@ -1,0 +1,6 @@
+1015
+
+Redis - HA 구성 (Master-Slave)
+
+- 레디스는 Replication 기능을 지원.
+- redis.conf 파일에서 slaveof <master node's ip> <master node's port> 입력한 뒤 레디스 구동.
