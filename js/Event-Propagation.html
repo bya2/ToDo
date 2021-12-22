@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="fruits">
+      <li id="apple">Apple</li>
+      <li id="banana">Banana</li>
+      <li id="orange">Orange</li>
+    </ul>
+    <script>
+      const $fruits = document.getElementById("fruits");
+      const $banana = document.getElementById("banana");
+
+      $fruits.addEventListener("click", (e) => {
+        console.log("fruits:");
+        console.log(`이벤트 단계: ${e.eventPhase}`);
+        console.log(`이벤트 타깃: ${e.target}`);
+        console.log(`커런트 타깃: ${e.currentTarget}\n`);
+      });
+
+      $banana.addEventListener("click", (e) => {
+        console.log("banana:");
+        console.log(`이벤트 단계: ${e.eventPhase}`);
+        console.log(`이벤트 타깃: ${e.target}`);
+        console.log(`커런트 타깃: ${e.currentTarget}\n`);
+      });
+
+      $fruits.addEventListener("click", (e) => {
+        console.log("fruits:");
+        console.log(`이벤트 단계: ${e.eventPhase}`);
+        console.log(`이벤트 타깃: ${e.target}`);
+        console.log(`커런트 타깃: ${e.currentTarget}`);
+      });
+    </script>
+  </body>
+</html>
