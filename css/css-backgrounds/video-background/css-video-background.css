@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --black: #333;
+  --white: #fff;
+}
+
+.dark {
+  --black: #fff;
+  --white: #333;
+}
+
+.dark .ionicon {
+  storke: #fff;
+}
+
+header {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 40px 100px;
+  z-index: 10000;
+}
+
+header > .logo {
+  position: relative;
+  display: inline-flex;
+  color: var(--black);
+  text-decoration: none;
+  font-size: 2em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.right-side {
+  display: flex;
+}
+
+.btns {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.btns > object {
+  width: 24px;
+  height: auto;
+  pointer-events: none;
+}
+
+.ionicon {
+  color: var(--black);
+  stroke: var(--black);
+}
+
+.btns.menu-toggle {
+  width: 48px;
+  height: auto;
+}
+
+.btns > object:nth-of-type(2) {
+  display: none;
+}
+
+.btns.active > object:nth-of-type(1) {
+  display: none;
+}
+
+.btns.active > object:nth-of-type(2) {
+  display: block;
+}
+
+main {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main > video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+main > .img-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  user-select: none;
+  mix-blend-mode: screen;
+}
+
+.dark main > .img-mask {
+  filter: invert(1);
+  mix-blend-mode: multiply;
+}
+
+main > h2 {
+  position: relative;
+  z-index: 3;
+  font-size: 16vw;
+  color: var(--white);
+  text-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+}
+
+nav > ul {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--white);
+  z-index: 4;
+  transition: 0.5s;
+}
+
+nav > ul.active {
+  left: 0;
+}
+
+nav > ul > li {
+  list-style-type: none;
+}
+
+nav > ul > li > a {
+  display: inline-flex;
+  margin: 5px 0;
+  font-size: 1.35em;
+  text-decoration: none;
+  color: var(--black);
+  padding: 5px 20px;
+  border-radius: 40px;
+}
+
+nav > ul > li > a:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+footer {
+  position: relative;
+}
+
+footer > .footer-text {
+  position: absolute;
+  left: 100px;
+  bottom: 40px;
+  z-index: 4;
+  font-weight: 400;
+  font-size: 1.2em;
+  color: var(--black);
+}
+
+footer > .sci {
+  position: absolute;
+  right: 100px;
+  bottom: 40px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  width: 20px;
+  height: auto;
+}
+
+footer > .sci object {
+  pointer-events: none;
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    padding: 20px;
+  }
+
+  .footer-text {
+    left: 20px;
+    bottom: 30px;
+  }
+
+  .sci {
+    right: 20px;
+    bottom: 20px;
+  }
+}

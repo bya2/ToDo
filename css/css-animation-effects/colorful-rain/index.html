@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <script>
+      const fn_create__rain = () => {
+        const amount_rain = 150;
+        const node_body = document.querySelector("body");
+        const node_fragment = document.createDocumentFragment();
+        for (let i = 0; i < amount_rain; ++i) {
+          const node_drop = document.createElement("i");
+
+          const size_drop = Math.random() * 5;
+          // const pos_X_drop = Math.floor(Math.random() * innerWidth);
+          const pos_X_percentage_drop =
+            Math.round((Math.random() * 100 + Number.EPSILON) * 1000) / 1000;
+          const delay_drop = Math.random() * -20;
+          const duration_drop = Math.random() * 5;
+
+          node_drop.style.width = `${0.2 + size_drop}px`;
+          // node_drop.style.left = `${pos_X_drop}px`;
+          node_drop.style.left = `${pos_X_percentage_drop}%`;
+          node_drop.style.animationDelay = `${delay_drop}s`;
+          node_drop.style.animationDuration = `${1 + duration_drop}s`;
+
+          node_fragment.appendChild(node_drop);
+        }
+        node_body.appendChild(node_fragment);
+      };
+
+      fn_create__rain();
+    </script>
+  </body>
+</html>

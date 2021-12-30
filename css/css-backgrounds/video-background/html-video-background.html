@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css-video-background.css" />
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">Logo</a>
+      <div class="right-side">
+        <div class="btns day-night">
+          <object data="./svg/moon-outline.svg" type="image/svg+xml"></object>
+          <object data="./svg/sunny-outline.svg" type="image/svg+xml"></object>
+        </div>
+        <div class="btns menu-toggle">
+          <object data="./svg/menu-outline.svg" type="image/svg+xml"></object>
+          <object data="./svg/close-outline.svg" type="image/svg+xml"></object>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <video src="./video/video.mp4" autoplay loop muted type="mp4"></video>
+      <img src="./image/mask.jpg" alt="mask" class="img-mask" />
+      <h2>Ocean</h2>
+    </main>
+
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Package</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <footer>
+      <p class="footer-text">Bya2 - 2021.12</p>
+      <ul class="sci">
+        <li>
+          <a href="#"
+            ><object
+              data="./svg/logo-facebook.svg"
+              type="image/svg+xml"
+            ></object
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><object data="./svg/logo-twitter.svg" type="image/svg+xml"></object
+          ></a>
+        </li>
+        <li>
+          <a href="#"
+            ><object
+              data="./svg/logo-instagram.svg"
+              type="image/svg+xml"
+            ></object
+          ></a>
+        </li>
+      </ul>
+    </footer>
+
+    <script>
+      const node_body = document.querySelector("body");
+      const node_day_night = document.querySelector(".day-night");
+      const node_menu_toggle = document.querySelector(".menu-toggle");
+      const node_navigation_ul = document.querySelector("nav > ul");
+
+      node_day_night.addEventListener("click", () => {
+        console.log(1);
+        node_body.classList.toggle("dark");
+        node_day_night.classList.toggle("active");
+      });
+
+      node_menu_toggle.addEventListener("click", () => {
+        node_menu_toggle.classList.toggle("active");
+        node_navigation_ul.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
