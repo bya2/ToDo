@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  --color__bg: hsl(258, 61%, 34%);
+  --color_button__bg: hsl(0, 0%, 0%);
+}
+
+body {
+  background-color: var(--color__bg);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  position: relative;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color_button__bg);
+  margin: 40px;
+  border: none;
+  transition: 1s;
+  overflow: hidden;
+}
+
+.button:nth-of-type(1) {
+  --hover_color__bg: hsl(318, 100%, 57%);
+  --idx__button: 0;
+}
+.button:nth-of-type(2) {
+  --hover_color__bg: hsl(180, 100%, 57%);
+  --idx__button: -1;
+}
+.button:nth-of-type(3) {
+  --hover_color__bg: hsl(101, 100%, 57%);
+  --idx__button: -2;
+}
+
+.button:hover {
+  background-color: var(--hover_color__bg);
+  box-shadow: 0 0 10px var(--hover_color__bg), 0 0 30px var(--hover_color__bg),
+    0 0 60px var(--hover_color__bg), 0 0 100px var(--hover_color__bg);
+  -webkit-box-reflect: below 0px
+    linear-gradient(transparent, transparent, var(--color_button__bg));
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 400%;
+  background-color: var(--hover_color__bg);
+  transition: 1s;
+  animation-name: auto_rotate__button_before;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-delay: calc(0.33s * var(--idx__button));
+  animation-iteration-count: infinite;
+}
+
+.button:hover::before {
+  width: 120%;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background-color: var(--color__bg);
+}
+
+.button > span {
+  z-index: 1;
+  color: white;
+  font-size: 2rem;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.01rem;
+  transition: 0.5s;
+}
+
+.button:hover > span {
+  opacity: 1;
+}
+
+@keyframes auto_rotate__button_before {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
