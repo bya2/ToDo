@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(0, 0%, 96%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-toggle {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.button-toggle > span {
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  background-color: hsl(221, 100%, 55%);
+  border-radius: 4px;
+  transition: 0.5s;
+}
+
+.button-toggle > span:nth-of-type(1) {
+  transform: translateY(-15px);
+  width: 25px;
+  left: 15px;
+}
+
+.button-toggle > span:nth-of-type(2) {
+  transform: translateY(15px);
+  width: 15px;
+  left: 15px;
+}
+
+.button-toggle.active > span:nth-child(3) {
+  transform: translateX(60px);
+}
+
+.button-toggle.active > span:nth-child(1) {
+  width: 40px;
+  transform: translateY(0px) rotate(45deg);
+  transition-delay: 0.125s;
+}
+
+.button-toggle.active > span:nth-child(2) {
+  width: 40px;
+  transform: translateY(0px) rotate(315deg);
+  transition-delay: 0.25s;
+}
