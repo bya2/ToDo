@@ -1,0 +1,9 @@
+{
+  "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
+  "editor.fontSize": 13.3,
+  "editor.fontWeight": "normal",
+  "editor.fontLigatures": true,
+  "editor.smoothScrolling": true,
+  "editor.lineHeight": 1.4,
+  "terminal.integrated.fontFamily": "D2Coding"
+}
