@@ -1,0 +1,38 @@
+1.
+프로젝트에 index.html의 여부.
+없다면 React에서도 index.html을 삭제하고 사용할 수 있는가?
+Layout 컴포넌트 구조의 이상함. 반환하는 태그가 2개인데
+
+1-1: _app.js - Headerinfo
+1-2: 컴포넌트 내 모든 컨텐츠는 children이라는 프로퍼티로 받을 수 있음
+
+2. Atom과 Selector
+
+4. Axios 사용
+
+const res = await axios.method(url, ...)
+
+5. 블록 내에서 스크롤 (프로젝트 내)
+
+5-1: ::-webkit-scrollbar: 스크롤바 구간 전체
+5-2: ::-webkit-scrollbar-track: 스크롤바 이외의 부분
+5-3: ::-webkit-scrollbar-thumb: 스크롤바
+
+6. 리덕스와 리코일 둘의 차이점
+
+6-1: 같은 상태 관련 라이브러리
+6-2: 리덕스는 커뮤니티나 자료가 많고, 리코일은 리액트 전용이라고 봐도 무방
+
+7. 깃헙페이지
+
+7-1: gh-pages
+
+8. 리액트에서 sass를 사용할 때 next처럼 값으로 줘서 사용 불가능?
+
+8-1: 불가능
+
+9. 고랑 연결
+
+9-1: 아직 안함
+
+10. 모달의 미디어쿼리 적용 상태에 따른 크기 변화 혹은 그냥 두기

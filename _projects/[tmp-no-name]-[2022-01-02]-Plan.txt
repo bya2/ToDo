@@ -1,0 +1,5 @@
+TODAY:
+1. Layout 그림 일부 변경
+2. Layout 작성
+3. package: react-markdown
+4. 프로젝트 이름 결정: Style Space

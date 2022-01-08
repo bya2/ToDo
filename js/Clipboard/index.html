@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Copy to Clipboard</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: hsl(0, 0%, 97%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 30px;
+      }
+      input {
+        user-select: all;
+      }
+      div {
+        user-select: all;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      type="text"
+      name="tmp_input"
+      id="tmp_input"
+      value="sfasafsadsaf"
+      readonly
+    />
+    <button class="button-copy">Copy</button>
+    <div>dsafjskdafjslaafjlkasjfkl</div>
+    <script>
+      const node_tmp__input = document.getElementById("tmp_input");
+      const node_button__copy = document.querySelector(".button-copy");
+      node_button__copy.addEventListener("click", () => {
+        node_tmp__input.select();
+        document.execCommand("Copy");
+        getSelection().removeAllRanges();
+      });
+    </script>
+  </body>
+</html>

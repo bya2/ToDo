@@ -1,0 +1,13 @@
+
+Jenkins:
+젠킨스의 노드패키지관리자와 코드 상의 
+
+내 온프레미스 서버의 노드 관련 라이브러리 버전이 안맞는건가 
+
+빌드가안됨.
+
+패키지 버전 관련해서 버전 고정시키는 파일은 다 이그노어
+package-lock.json
+yarn-lock.json
+
+설치 관련 에러 문제: npm i --legacy-peer-deps react-google-charts
