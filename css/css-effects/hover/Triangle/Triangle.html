@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Triangle With Hover Effect</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        position: relative;
+        width: 400px;
+        height: 400px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      .card {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 0 -45px;
+        display: flex;
+        overflow: hidden;
+        clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+      }
+      .card:nth-of-type(2) {
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      }
+      .card img {
+        width: 200px;
+        height: 200px;
+        transition-duration: 0.5s;
+      }
+      .card:hover img {
+        transform: scale(1.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card"><img src="images/image1.jpg" alt="image" /></div>
+      <div class="card"><img src="images/image2.jpg" alt="image" /></div>
+      <div class="card"><img src="images/image5.jpg" alt="image" /></div>
+      <div class="card"><img src="images/image4.jpg" alt="image" /></div>
+    </div>
+  </body>
+</html>
