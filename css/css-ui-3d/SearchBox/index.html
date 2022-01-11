@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clone coding: CSS 3D Search Box UI Design</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        background-color: hsl(233, 23%, 85%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .wrapper__search_box {
+        position: relative;
+        width: 65px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition-duration: 0.5s;
+      }
+
+      .wrapper__search_box:hover {
+        width: 400px;
+      }
+
+      .wrapper__search_box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 100%;
+        /* background-color: #fff; */
+        background-image: linear-gradient(
+          hsl(0, 0%, 100%),
+          hsl(0, 0%, 100%),
+          #e3e3e3
+        );
+        filter: blur(1px);
+        z-index: 1;
+      }
+
+      .wrapper__search_box::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -1px;
+        width: 10px;
+        height: 100%;
+        /* background-color: #fff; */
+        background-color: hsl(0, 0%, 62%);
+        filter: blur(1px);
+        z-index: 1;
+      }
+
+      .wrapper__search_box .shadow__search_box {
+        position: absolute;
+        top: 0;
+        left: -50px;
+        width: calc(100% + 50px);
+        height: 300px;
+        background: linear-gradient(
+          180deg,
+          hsla(0, 0%, 0%, 0.1),
+          transparent,
+          transparent
+        );
+        transform-origin: top;
+        transform: skew(45deg);
+
+        /* 임시 작성 */
+        /* border: 1px solid black; */
+      }
+
+      .wrapper__search_box .shadow__search_box::before {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: hsl(233, 23%, 85%);
+      }
+
+      .wrapper__search_box input {
+        /* Remove basic features */
+        outline: none;
+        border: none;
+
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 10px 25px;
+        font-size: 1.1rem;
+        background-image: linear-gradient(
+          hsl(249, 10%, 87%),
+          hsl(222, 14%, 68%)
+        );
+        box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1),
+          15px 15px 15px hsla(0, 0%, 0%, 0.1),
+          20px 20px 20px hsla(0, 0%, 0%, 0.1),
+          30px 30px 30px hsla(0, 0%, 0%, 0.1),
+          inset 1px 1px 2px hsl(0, 0%, 100%);
+      }
+      .wrapper__search_box input,
+      .wrapper__search_box input::placeholder {
+        color: transparent;
+      }
+
+      .wrapper__search_box:hover input,
+      .wrapper__search_box:hover input::placeholder {
+        color: hsl(0, 0%, 33%);
+      }
+
+      input {
+        font-family: consolas;
+      }
+
+      ion-icon {
+        position: absolute;
+        right: 20px;
+        color: #555;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+    </style>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <div class="wrapper__search_box">
+      <div class="shadow__search_box"></div>
+      <input type="text" placeholder="Search Anything You Want..." />
+      <ion-icon name="search-outline"></ion-icon>
+    </div>
+  </body>
+</html>
