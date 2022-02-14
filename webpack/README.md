@@ -9,6 +9,18 @@ Import Cost
 
 `Terminal`
 
+```bat
+npm i --save-dev `
+webpack `
+webpack-cli `
+html-webpack-plugin `
+webpack-dev-server `
+css-loader `
+style-loader `
+file-loader `
+clean-webpack-plugin
+```
+
 ```sh
 npm i --save-dev webpack webpack-cli  #
 npm i --save-dev html-webpack-plugin  # HTML 파일 생성 (스크립트 등이 자동으로 삽입되게 해줌)
